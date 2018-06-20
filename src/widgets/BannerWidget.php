@@ -35,6 +35,11 @@ class BannerWidget extends Widget
         if (!$this->_place)
             return false;
 
+        // Если не найдены активные баннеры -  тоже ничего не делаем
+        if (!$this->_place->bannersActive)
+            return false;
+
+
         // Если площадка в режиме слайдера - выбираем все баннеры. В противном случае - рандомно выбираем 1 баннер из актиыных
         if ($this->_place->slider == AdsPlace::SLIDER_ENABLED) {
             $this->_banners = $this->_place->bannersActive;
