@@ -19,6 +19,7 @@
     }
   ],
   "require": {
+    "php": ">=7.0.0",
     "yiisoft/yii2": "~2.0.13",
     "floor12/yii2-module-files": "dev-master",
     "floor12/yii2-editmodal": "dev-master",

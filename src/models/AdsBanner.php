@@ -2,7 +2,7 @@
 
 namespace floor12\banner\models;
 
-use \backend\components\ManyToManyBehavior;
+use voskobovich\linker\LinkerBehavior;
 use \floor12\files\components\FileBehaviour;
 use floor12\files\models\File;
 use yii\db\ActiveQuery;
@@ -100,7 +100,7 @@ class AdsBanner extends ActiveRecord
                 'attributes' => ['file_desktop', 'file_mobile']
             ],
             'ManyToManyBehavior' => [
-                'class' => ManyToManyBehavior::class,
+                'class' => LinkerBehavior::class,
                 'relations' => [
                     'place_ids' => 'places',
                 ],
