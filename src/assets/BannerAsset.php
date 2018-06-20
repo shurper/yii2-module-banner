@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 
 class BannerAsset extends AssetBundle
 {
-    public $sourcePath  = '@common/modules/banner/assets';
+    public $sourcePath  = '@vendor/floor12/yii2-module-banner/src/assets';
 
     public $css = [
         'banner.css'
