@@ -25,7 +25,7 @@ class m180619_102923_banner extends Migration
             'show_start' => $this->date()->null()->comment('Начало показа'),
             'show_end' => $this->date()->null()->comment('Окончание показа'),
             'href' => $this->string()->null()->comment('Ссылка'),
-            'shows' => $this->integer()->notNull()->defaultValue(0)->comment('Показы'),
+            'views' => $this->integer()->notNull()->defaultValue(0)->comment('Показы'),
             'clicks' => $this->integer()->notNull()->defaultValue(0)->comment('Клики'),
         ], $tableOptions);
 
