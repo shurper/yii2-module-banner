@@ -1,0 +1,13 @@
+a.btn-banner-add {
+    float: right;
+    margin-top: -35px;
+}
+
+.striked {
+    text-decoration: line-through;
+}
+
+.table-banners .small {
+    color: #949494;
+    font-weight: 300;
+}
