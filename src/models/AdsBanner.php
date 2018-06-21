@@ -160,7 +160,7 @@ class AdsBanner extends ActiveRecord
     public function increaseViews(): bool
     {
         $this->views++;
-        return $this->save(false);
+        return $this->save(false, ['views']);
     }
 
     /** Увеличиваем счетчик кликов
@@ -169,7 +169,7 @@ class AdsBanner extends ActiveRecord
     public function increaseClicks(): bool
     {
         $this->clicks++;
-        return $this->save(false);
+        return $this->save(false, ['clicks']);
     }
 
 
