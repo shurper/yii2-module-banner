@@ -32,7 +32,6 @@ class AdminController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['form', 'delete'],
                 'rules' => [
                     [
                         'allow' => true,
