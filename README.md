@@ -62,4 +62,5 @@ $ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-banner/src/
 http://your-domain.com/banner/admin
 ```
 
+При редактировании рекламной площадки, можно выбрать для нее режим слайдера с дополнительными настройками.
 

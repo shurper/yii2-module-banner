@@ -52,6 +52,23 @@ $form = ActiveForm::begin([
         </div>
     </div>
 
+
+    <div id="slider-block">
+        <h3>Настройки слайдера</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <?= $form->field($model, 'slider_direction')->dropDownList($model->directions) ?>
+            </div>
+            <div class="col-md-3">
+                <?= $form->field($model, 'slider_time')->textInput(['placeholder' => 3000]) ?>
+            </div>
+            <div class="col-md-3" style="padding-top: 25px">
+                <?= $form->field($model, 'slider_arrows')->checkbox() ?>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <div class="modal-footer">

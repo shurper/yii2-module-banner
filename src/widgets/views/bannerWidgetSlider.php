@@ -5,22 +5,25 @@
  * Date: 20.06.2018
  * Time: 9:23
  *
- *  * @var $this View
+ * @var $this View
  * @var $banners \floor12\banner\models\AdsBanner[]
+ * @var $place \floor12\banner\models\AdsPlace
+ * @var $id string
  */
 
 use yii\web\View;
 use yii\helpers\Html;
 
+
 $jsCode = <<< JS
 
-    $('.banner-slider').slick({
-        vertical : true,
-        arrows: false,
+    $('#{$id}').slick({
+        vertical :  {$place->vertical},
+        arrows: {$place->arrows},
         autoplay: true,
         accessibility: false,
         adaptiveHeight: true,
-        autoplaySpeed: 3000,
+        autoplaySpeed: {$place->slider_time},
     });
     
 JS;
@@ -29,7 +32,7 @@ $this->registerJsFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.m
 $this->registerCssFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
 $this->registerJs($jsCode, View::POS_READY, 'floor12-banner-slider');
 
-echo "<div class='banner-slider'>";
+echo "<div id='{$id}'>";
 
 foreach ($banners as $banner) {
 

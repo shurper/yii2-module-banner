@@ -18,6 +18,6 @@ if ($banners->file_mobile) {
     $img = Html::img($banners->file_desktop, ['class' => 'img-responsive']);
 
 if ($banners->href)
-    echo Html::a($img, ['/banner/redirect', 'id' => $banners->id], ['target' => '_blank']);
+    echo Html::a($img, ['/banner/redirect', 'id' => $banners->id], ['target' => '_blank','id'=>'']);
 else
     echo $img;

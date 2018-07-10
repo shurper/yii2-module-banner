@@ -39,7 +39,6 @@ class BannerWidget extends Widget
         if (!$this->_place->bannersActive)
             return false;
 
-
         // Если площадка в режиме слайдера - выбираем все баннеры. В противном случае - рандомно выбираем 1 баннер из актиыных
         if ($this->_place->slider == AdsPlace::SLIDER_ENABLED) {
             $this->_banners = $this->_place->bannersActive;
@@ -66,7 +65,11 @@ class BannerWidget extends Widget
     {
         if (!$this->_banners)
             return "";
-        return $this->render($this->_view, ['banners' => $this->_banners]);
+        return $this->render($this->_view, [
+            'banners' => $this->_banners,
+            'place' => $this->_place,
+            'id' => "banner" . rand(99999, 9999999)
+        ]);
     }
 
 }

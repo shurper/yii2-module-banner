@@ -16,6 +16,11 @@ use yii\db\ActiveRecord;
  * @property int $mobile_height Высота (мобильный)
  * @property int $status Выключить
  * @property int $slider Активировать слайдер
+ * @property int $slider_direction Направление слайдера
+ * @property int $slider_time Длительность слайда
+ * @property int $slider_arrows Показывать стрелки слайдера
+ * @property string $arrows Возвращает строковое true или false для вставки в JS
+ * @property string $vertical Возвращает строковое true или false для вставки в JS
  * @property AdsBanner[] $banners Связанные баннеры
  * @property AdsBanner[] $bannersActive Активные баннеры
  *
@@ -28,6 +33,17 @@ class AdsPlace extends ActiveRecord
 
     const SLIDER_DISABLED = 0;
     const SLIDER_ENABLED = 1;
+
+    const SLIDER_ARROWS_SHOW = 1;
+    const SLIDER_ARROWS_HIDE = 0;
+
+    const SLIDER_VERTICAL = 1;
+    const SLIDER_HORIZONTAL = 0;
+
+    public $directions = [
+        self::SLIDER_HORIZONTAL => 'Горизонтальный',
+        self::SLIDER_VERTICAL => 'Вертикальный',
+    ];
 
     /**
      * {@inheritdoc}
@@ -44,7 +60,7 @@ class AdsPlace extends ActiveRecord
     {
         return [
             [['title', 'desktop_width', 'desktop_height'], 'required'],
-            [['desktop_width', 'desktop_height', 'mobile_width', 'mobile_height', 'status', 'slider'], 'integer'],
+            [['desktop_width', 'desktop_height', 'mobile_width', 'mobile_height', 'status', 'slider', 'slider_direction', 'slider_arrows', 'slider_time'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -83,7 +99,10 @@ class AdsPlace extends ActiveRecord
             'mobile_width' => 'Ширина (мобильный)',
             'mobile_height' => 'Высота (мобильный)',
             'status' => 'Выключить',
-            'slider' => 'Активировать слайдер'
+            'slider' => 'Активировать слайдер',
+            'slider_direction' => 'Направление слайдера',
+            'slider_arrows' => 'Показывать стрелки',
+            'slider_time' => 'Длительность слайда (мс)'
         ];
     }
 
@@ -107,6 +126,26 @@ class AdsPlace extends ActiveRecord
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    /** Возвращаем строковое значение для вставки в JS
+     * @return string
+     */
+    public function getVertical(): string
+    {
+        if ($this->slider_direction == self::SLIDER_VERTICAL)
+            return "true";
+        return "false";
+    }
+
+    /** Возвращаем строковое значение для вставки в JS
+     * @return string
+     */
+    public function getArrows(): string
+    {
+        if ($this->slider_arrows == self::SLIDER_ARROWS_SHOW)
+            return "true";
+        return "false";
     }
 
 }
