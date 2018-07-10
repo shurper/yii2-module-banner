@@ -1,5 +1,12 @@
 # yii2-module-banner
-Модуль для размещения и управления баннерами на сайте. Оперирует с двумя сущностями - площадками (местами установки баннера на сайте) и, непосредственно, баннерами.
+
+[![Latest Stable Version](https://poser.pugx.org/floor12/yii2-module-banner/v/stable)](https://packagist.org/packages/floor12/yii2-module-banner)
+[![Latest Unstable Version](https://poser.pugx.org/floor12/yii2-module-banner/v/unstable)](https://packagist.org/packages/floor12/yii2-module-banner)
+[![Total Downloads](https://poser.pugx.org/floor12/yii2-module-banner/downloads)](https://packagist.org/packages/floor12/yii2-module-banner)
+[![License](https://poser.pugx.org/floor12/yii2-module-banner/license)](https://packagist.org/packages/floor12/yii2-module-banner)
+
+Модуль для размещения и управления баннерами и поп-ап на сайте. 
+Оперирует с тремя сущностями - площадками (местами установки баннера на сайте), классическими и pop-up баннерами.
 
 
 Установка
@@ -42,7 +49,7 @@ $ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-banner/src/
 
 Использование
 -----
-Во view-файле вызываем виджет показа баннера, где **place_id** - это id площадки для размещения. 
+Для внедрения в view-файл баннера, вызываем `BannerWidget` виджет показа баннера в нужном месте, где **place_id** - это id площадки для размещения. 
 
 
 ```php  
@@ -54,6 +61,14 @@ $ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-banner/src/
 Если на одну и ту же площадку добавлено более одного активного баннера, то существуют две модели поведения.
 По умолчанию, баннеры будут рандомно меняться при перезагрузке страницы. Но, если в настройках площадки выбрать 
 "слайдер", то все активные баннеры текущей площадки будут перелистываться, образуя слайдер.
+
+Для отображения pop-up баннеров, необходимо в основной layout вывести `PopupWidget`:
+```
+<?php
+    $this->beginBody();
+    echo PopupWidget::widget([]);
+?>
+```
 
 ### Управление
 
