@@ -12,15 +12,18 @@ use yii\web\AssetBundle;
 
 class BannerAsset extends AssetBundle
 {
-    public $sourcePath  = '@vendor/floor12/yii2-module-banner/src/assets';
+    public $sourcePath = '@vendor/floor12/yii2-module-banner/src/assets';
 
     public $css = [
         'banner.css'
     ];
 
-    public $js = [];
+    public $js = [
+        'banner.js'
+    ];
 
     public $depends = [
         'yii\bootstrap\BootstrapAsset',
+        'yii\web\JqueryAsset'
     ];
 }

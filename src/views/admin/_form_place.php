@@ -18,6 +18,7 @@ $form = ActiveForm::begin([
     'enableClientValidation' => true
 ]);
 
+$this->registerJs("updateAdsPlaceForm()");
 
 ?>
 <div class="modal-header">
@@ -53,7 +54,7 @@ $form = ActiveForm::begin([
     </div>
 
 
-    <div id="slider-block">
+    <div id="adsplace-form-slider-block">
         <h3>Настройки слайдера</h3>
         <div class="row">
             <div class="col-md-4">
