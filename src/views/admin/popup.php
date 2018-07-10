@@ -15,7 +15,7 @@ use yii\widgets\Pjax;
 use yii\grid\GridView;
 use rmrevin\yii\fontawesome\FontAwesome;
 use floor12\banner\assets\BannerAsset;
-use floor12\banner\models\AdsBanner;
+use floor12\banner\models\AdsPopup;
 use floor12\editmodal\EditModalHelper;
 
 BannerAsset::register($this);
@@ -27,7 +27,7 @@ echo Html::tag('h1', 'Баннеры');
 echo TabWidget::widget();
 
 echo Html::a(FontAwesome::icon('plus') . " добавить баннер", null, [
-    'onclick' => EditModalHelper::showForm('banner/admin/banner-form', 0),
+    'onclick' => EditModalHelper::showForm('banner/admin/popup-form', 0),
     'class' => 'btn btn-sm btn-success btn-banner-add'
 ]);
 
@@ -43,22 +43,21 @@ echo GridView::widget([
         'id',
         [
             'attribute' => 'title',
-            'content' => function (AdsBanner $model): string {
-                if ($model->status == AdsBanner::STATUS_DISABLED)
+            'content' => function (AdsPopup $model): string {
+                if ($model->status == AdsPopup::STATUS_DISABLED)
                     $html = Html::tag('span', $model, ['class' => 'striked']);
                 else
                     $html = $model;
-                $html .= Html::tag('div', implode(', ', $model->places), ['class' => 'small']);
                 return $html;
             }
         ],
         'views',
         'clicks',
         ['contentOptions' => ['style' => 'min-width:100px; text-align:right;'],
-            'content' => function (AdsBanner $model) {
+            'content' => function (AdsPopup $model) {
                 return
-                    Html::a(FontAwesome::icon('pencil'), NULL, ['onclick' => EditModalHelper::showForm('banner/admin/banner-form', $model->id), 'class' => 'btn btn-default btn-sm']) . " " .
-                    Html::a(FontAwesome::icon('trash'), NULL, ['onclick' => EditModalHelper::deleteItem('banner/admin/banner-delete', $model->id), 'class' => 'btn btn-default btn-sm']);
+                    Html::a(FontAwesome::icon('pencil'), NULL, ['onclick' => EditModalHelper::showForm('banner/admin/popup-form', $model->id), 'class' => 'btn btn-default btn-sm']) . " " .
+                    Html::a(FontAwesome::icon('trash'), NULL, ['onclick' => EditModalHelper::deleteItem('banner/admin/popup-delete', $model->id), 'class' => 'btn btn-default btn-sm']);
             },
         ]
     ]

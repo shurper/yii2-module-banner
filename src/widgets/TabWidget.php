@@ -23,10 +23,15 @@ class TabWidget extends Widget
             [
                 'name' => 'Баннеры',
                 'href' => Url::toRoute(['banner'])
-            ], [
+            ],
+            [
                 'name' => 'Площадки',
                 'href' => Url::toRoute(['place'])
-            ]
+            ],
+            [
+                'name' => 'Pop-up',
+                'href' => Url::toRoute(['popup'])
+            ],
         ];
     }
 

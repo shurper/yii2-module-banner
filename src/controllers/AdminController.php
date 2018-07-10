@@ -10,6 +10,8 @@ namespace floor12\banner\controllers;
 
 use floor12\banner\models\AdsBanner;
 use floor12\banner\models\AdsPlace;
+use floor12\banner\models\AdsPopup;
+use floor12\banner\models\AdsPopupFilter;
 use yii\web\Controller;
 use \Yii;
 use floor12\banner\models\AdsBannerFilter;
@@ -79,6 +81,17 @@ class AdminController extends Controller
         return $this->render('places', ['model' => $model]);
     }
 
+    /** Страница управления pop-up баннерами
+     * @return string
+     */
+    public function actionPopup(): string
+    {
+        $model = new AdsPopupFilter();
+        $model->load(Yii::$app->request->get());
+        $model->validate();
+        return $this->render('popup', ['model' => $model]);
+    }
+
     /** Подключаем необходимые экшены для редактирования и удаления площадок и баннеров
      *  Для обеспечения этого функционала используем пакет floor12\editmodal для редактирования в модальном окне
      * @return array
@@ -96,6 +109,17 @@ class AdminController extends Controller
                 'class' => DeleteAction::class,
                 'model' => AdsPlace::class,
                 'message' => 'Площадка удалена',
+            ],
+            'popup-form' => [
+                'class' => EditModalAction::class,
+                'model' => AdsPopup::class,
+                'view' => '_form_popup',
+                'message' => 'Баннер сохранен',
+            ],
+            'popup-delete' => [
+                'class' => DeleteAction::class,
+                'model' => AdsPopup::class,
+                'message' => 'Баннер удален',
             ],
             'banner-form' => [
                 'class' => EditModalAction::class,
