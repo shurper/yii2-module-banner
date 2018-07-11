@@ -27,12 +27,4 @@ class Module extends \yii\base\Module
     {
         parent::init();
     }
-
-    public function adminMode()
-    {
-        if ($this->editRole == '@')
-            return !\Yii::$app->user->isGuest;
-        else
-            return \Yii::$app->user->can($this->editRole);
-    }
 }
