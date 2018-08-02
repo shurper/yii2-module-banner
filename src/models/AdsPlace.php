@@ -62,6 +62,9 @@ class AdsPlace extends ActiveRecord
             [['title', 'desktop_width', 'desktop_height'], 'required'],
             [['desktop_width', 'desktop_height', 'mobile_width', 'mobile_height', 'status', 'slider', 'slider_direction', 'slider_arrows', 'slider_time'], 'integer'],
             [['title'], 'string', 'max' => 255],
+            ['slider_time', 'default', 'value' => '3000'],
+
+
         ];
     }
 
@@ -83,7 +86,7 @@ class AdsPlace extends ActiveRecord
      */
     public function getBannersActive(): AdsBannerQuery
     {
-        return $this->getBanners()->active();
+        return $this->getBanners()->orderBy('weight DESC, id')->active();
     }
 
     /**

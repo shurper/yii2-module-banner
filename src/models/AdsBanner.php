@@ -2,9 +2,9 @@
 
 namespace floor12\banner\models;
 
-use voskobovich\linker\LinkerBehavior;
-use \floor12\files\components\FileBehaviour;
+use floor12\files\components\FileBehaviour;
 use floor12\files\models\File;
+use voskobovich\linker\LinkerBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -23,6 +23,7 @@ use yii\db\ActiveRecord;
  * @property AdsPlace[] $places Связанные площадки
  * @property File $file_desktop
  * @property File $file_mobile
+ * @property integer $weight
  *
  */
 class AdsBanner extends ActiveRecord
@@ -45,7 +46,7 @@ class AdsBanner extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['status', 'views', 'clicks'], 'integer'],
+            [['status', 'views', 'clicks', 'weight'], 'integer'],
             [['title'], 'required'],
             [['show_start', 'show_end'], 'safe'],
             [['title', 'href'], 'string', 'max' => 255],
@@ -85,7 +86,8 @@ class AdsBanner extends ActiveRecord
             'clicks' => 'Клики',
             'file_desktop' => 'Изображение (декстоп)',
             'file_mobile' => 'Изображение (мобильный)',
-            'place_ids' => 'Связанные площадки'
+            'place_ids' => 'Связанные площадки',
+            'weight' => 'Вес баннера'
         ];
     }
 

@@ -11,11 +11,11 @@
  *
  */
 
-use yii\widgets\ActiveForm;
-use yii\helpers\Html;
 use floor12\files\components\FileInputWidget;
+use kartik\date\DatePicker;
 use kartik\select2\Select2;
-use \kartik\date\DatePicker;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 $datePickerOptions = [
     'language' => 'ru',
@@ -54,7 +54,14 @@ $form = ActiveForm::begin([
         </div>
     </div>
 
-    <?= $form->field($model, 'href') ?>
+    <div class="row">
+        <div class="col-md-9">
+            <?= $form->field($model, 'href') ?>
+        </div>
+        <div class="col-md-3">
+            <?= $form->field($model, 'weight')->textInput(['placeholder' => '0']) ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'place_ids')->widget(Select2::class, [
         'data' => $places,
