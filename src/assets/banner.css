@@ -24,3 +24,7 @@ a.btn-banner-add {
     color: white;
     opacity: 1;
 }
+
+#bannerModal img {
+    max-width: 100%;
+}
