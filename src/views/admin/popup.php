@@ -9,18 +9,18 @@
  * @var $model \floor12\banner\models\AdsBannerFilter;
  */
 
-use floor12\banner\widgets\TabWidget;
-use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yii\grid\GridView;
-use rmrevin\yii\fontawesome\FontAwesome;
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsPopup;
+use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalHelper;
+use rmrevin\yii\fontawesome\FontAwesome;
+use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\widgets\Pjax;
 
 BannerAsset::register($this);
 
-$this->title = 'Баннерные площадки';
+$this->title = 'Pop-up';
 
 echo Html::tag('h1', 'Баннеры');
 
@@ -28,7 +28,7 @@ echo TabWidget::widget();
 
 echo Html::a(FontAwesome::icon('plus') . " добавить баннер", null, [
     'onclick' => EditModalHelper::showForm('banner/admin/popup-form', 0),
-    'class' => 'btn btn-sm btn-success btn-banner-add'
+    'class' => 'btn btn-sm btn-primary btn-banner-add'
 ]);
 
 echo Html::tag('br');
