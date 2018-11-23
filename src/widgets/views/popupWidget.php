@@ -16,6 +16,8 @@ BannerAsset::register($this);
 
 $image = Html::img($model->file_desktop);
 
+$this->registerJs('$("#bannerModal").modal()');
+
 ?>
 
 <div class='modal fade' id='bannerModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'>
