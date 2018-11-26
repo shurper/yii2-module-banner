@@ -11,8 +11,9 @@
  * @var $id string
  */
 
-use yii\web\View;
+use floor12\banner\models\AdsBanner;
 use yii\helpers\Html;
+use yii\web\View;
 
 
 $jsCode = <<< JS
@@ -40,9 +41,17 @@ foreach ($banners as $banner) {
         $img = Html::img($banner->file_desktop, ['class' => 'img-responsive hidden-xs']);
         $img .= Html::img($banner->file_mobile, ['class' => 'img-responsive visible-xs']);
     } else
-        $img = Html::img($banner->file_desktop, ['class' => 'img-responsive']);
+        if ($banner->type == AdsBanner::TYPE_IMAGE)
+            $img = Html::img($banner->file_desktop, ['class' => 'img-responsive']);
+        else
+            $img = Html::tag('iframe', null, [
+                'src' => $banner->webPath,
+                'class' => 'f12-rich-banner',
+                'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
+            ]);
 
-    if ($banner->href)
+
+    if ($banner->href && $banners->type == AdsBanner::TYPE_IMAGE)
         echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], ['target' => '_blank']);
     else
         echo $img;
