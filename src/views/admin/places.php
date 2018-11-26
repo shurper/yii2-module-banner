@@ -28,7 +28,7 @@ echo TabWidget::widget();
 
 echo Html::a(FontAwesome::icon('plus') . " добавить площадку", null, [
     'onclick' => EditModalHelper::showForm('banner/admin/place-form', 0),
-    'class' => 'btn btn-sm btn-success btn-banner-add'
+    'class' => 'btn btn-sm btn-primary btn-banner-add'
 ]);
 
 echo Html::tag('br');

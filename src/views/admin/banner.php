@@ -20,7 +20,7 @@ use yii\widgets\Pjax;
 
 BannerAsset::register($this);
 
-$this->title = 'Баннерные площадки';
+$this->title = 'Баннеры';
 
 echo Html::tag('h1', 'Баннеры');
 
@@ -28,7 +28,7 @@ echo TabWidget::widget();
 
 echo Html::a(FontAwesome::icon('plus') . " добавить баннер", null, [
     'onclick' => EditModalHelper::showForm('banner/admin/banner-form', 0),
-    'class' => 'btn btn-sm btn-success btn-banner-add'
+    'class' => 'btn btn-sm btn-primary btn-banner-add'
 ]);
 
 echo Html::tag('br');
