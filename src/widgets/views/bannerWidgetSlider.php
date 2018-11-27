@@ -11,13 +11,23 @@
  * @var $id string
  */
 
-use yii\web\View;
+use floor12\banner\models\AdsBanner;
 use yii\helpers\Html;
+use yii\web\View;
 
 
 $jsCode = <<< JS
 
     $('#{$id}').slick({
+        vertical :  {$place->vertical},
+        arrows: {$place->arrows},
+        autoplay: true,
+        accessibility: false,
+        adaptiveHeight: true,
+        autoplaySpeed: {$place->slider_time},
+    });
+
+ $('#{$id}-mobile').slick({
         vertical :  {$place->vertical},
         arrows: {$place->arrows},
         autoplay: true,
@@ -38,11 +48,43 @@ foreach ($banners as $banner) {
 
     if ($banner->file_mobile) {
         $img = Html::img($banner->file_desktop, ['class' => 'img-responsive hidden-xs']);
-        $img .= Html::img($banner->file_mobile, ['class' => 'img-responsive visible-xs']);
     } else
-        $img = Html::img($banner->file_desktop, ['class' => 'img-responsive']);
+        if ($banner->type == AdsBanner::TYPE_IMAGE)
+            $img = Html::img($banner->file_desktop, ['class' => 'img-responsive']);
+        else
+            $img = Html::tag('iframe', null, [
+                'src' => $banner->webPath,
+                'class' => 'f12-rich-banner',
+                'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
+            ]);
 
-    if ($banner->href)
+
+    if ($banner->href && $banners->type == AdsBanner::TYPE_IMAGE)
+        echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], ['target' => '_blank']);
+    else
+        echo $img;
+}
+
+echo "</div>";
+
+echo "<div id='{$id}-mobile'>";
+
+foreach ($banners as $banner) {
+
+    if ($banner->file_mobile) {
+        $img = Html::img($banner->file_mobile, ['class' => 'img-responsive visible-xs']);
+    } else
+        if ($banner->type == AdsBanner::TYPE_IMAGE)
+            $img = Html::img($banner->file_desktop, ['class' => 'img-responsive']);
+        else
+            $img = Html::tag('iframe', null, [
+                'src' => $banner->webPath,
+                'class' => 'f12-rich-banner',
+                'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
+            ]);
+
+
+    if ($banner->href && $banners->type == AdsBanner::TYPE_IMAGE)
         echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], ['target' => '_blank']);
     else
         echo $img;
