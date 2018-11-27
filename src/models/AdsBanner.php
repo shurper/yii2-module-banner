@@ -5,6 +5,8 @@ namespace floor12\banner\models;
 use floor12\files\components\FileBehaviour;
 use floor12\files\models\File;
 use voskobovich\linker\LinkerBehavior;
+use Yii;
+use yii\base\ErrorException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -21,9 +23,12 @@ use yii\db\ActiveRecord;
  * @property int $clicks Клики
  * @property array $place_ids Массив айдишников связанных площадок
  * @property AdsPlace[] $places Связанные площадки
- * @property File $file_desktop
- * @property File $file_mobile
- * @property integer $weight
+ * @property File $file_desktop Файл баннера для декстоп версии
+ * @property File $file_mobile Файл баннера для мобильной версии
+ * @property integer $weight Вес баннера
+ * @property integer $type Тип баннера
+ * @property string $webrootPath Полный путь к рич-баннеры
+ * @property string $webPath Относительный путь к рич-баннеры
  *
  */
 class AdsBanner extends ActiveRecord
@@ -31,6 +36,9 @@ class AdsBanner extends ActiveRecord
 
     const STATUS_ACTIVE = 0;
     const STATUS_DISABLED = 1;
+
+    const TYPE_IMAGE = 0;
+    const TYPE_RICH = 1;
 
     /**
      * {@inheritdoc}
@@ -50,8 +58,8 @@ class AdsBanner extends ActiveRecord
             [['title'], 'required'],
             [['show_start', 'show_end'], 'safe'],
             [['title', 'href'], 'string', 'max' => 255],
-            ['file_desktop', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif'], 'maxFiles' => 1],
-            ['file_mobile', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif'], 'maxFiles' => 1],
+            ['file_desktop', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif', 'zip'], 'maxFiles' => 1],
+            ['file_mobile', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif', 'zip'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
             [['place_ids'], 'each', 'rule' => ['integer']],
             ['href', 'url', 'defaultScheme' => 'https'],
@@ -87,7 +95,8 @@ class AdsBanner extends ActiveRecord
             'file_desktop' => 'Изображение (декстоп)',
             'file_mobile' => 'Изображение (мобильный)',
             'place_ids' => 'Связанные площадки',
-            'weight' => 'Вес баннера'
+            'weight' => 'Вес баннера',
+            'type' => 'Тип баннера'
         ];
     }
 
@@ -174,5 +183,58 @@ class AdsBanner extends ActiveRecord
         return $this->save(false, ['clicks']);
     }
 
+    /** Определение типа баннера
+     * @return int
+     */
+    public function getType()
+    {
 
+        if ($this->file_desktop && $this->file_desktop->type != File::TYPE_IMAGE)
+            return self::TYPE_RICH;
+
+        return self::TYPE_IMAGE;
+    }
+
+    /**
+     * @return bool|string|void
+     */
+    public function getWebPath()
+    {
+        if ($this->type == self::TYPE_IMAGE)
+            return;
+        else {
+            $this->publish();
+            return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebPath . '/' . $this->file_desktop->hash . '/');
+        }
+    }
+
+    /**
+     * @return bool|string|void
+     */
+    public function getWebrootPath()
+    {
+        if ($this->type == self::TYPE_IMAGE)
+            return;
+        else {
+            return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebrootPath . '/' . $this->file_desktop->hash . '/');
+        }
+    }
+
+
+    /**
+     * @throws ErrorException
+     */
+    protected function publish()
+    {
+        if (!file_exists($this->webrootPath)) {
+            $zip = new \ZipArchive;
+            if ($zip->open($this->file_desktop->rootPath) === TRUE) {
+                mkdir($this->webrootPath);
+                $zip->extractTo($this->webrootPath);
+                $zip->close();
+            } else {
+                throw new ErrorException('Rich banner zip extracting error.');
+            }
+        }
+    }
 }

@@ -9,14 +9,14 @@
  * @var $model \floor12\banner\models\AdsBannerFilter;
  */
 
-use floor12\banner\widgets\TabWidget;
-use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yii\grid\GridView;
-use rmrevin\yii\fontawesome\FontAwesome;
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsBanner;
+use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalHelper;
+use rmrevin\yii\fontawesome\FontAwesome;
+use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\widgets\Pjax;
 
 BannerAsset::register($this);
 
@@ -50,6 +50,12 @@ echo GridView::widget([
                     $html = $model;
                 $html .= Html::tag('div', implode(', ', $model->places), ['class' => 'small']);
                 return $html;
+            }
+        ],
+        [
+            'attribute' => 'type',
+            'content' => function (AdsBanner $model) {
+                return $model->type ? "HTML" : "Изображение";
             }
         ],
         'views',
