@@ -84,7 +84,7 @@ foreach ($banners as $banner) {
             ]);
 
 
-    if ($banner->href && $banners->type == AdsBanner::TYPE_IMAGE)
+    if ($banner->href && $banner->type == AdsBanner::TYPE_IMAGE)
         echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], ['target' => '_blank']);
     else
         echo $img;
