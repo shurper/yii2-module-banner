@@ -42,7 +42,7 @@ $this->registerJsFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.m
 $this->registerCssFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
 $this->registerJs($jsCode, View::POS_READY, 'floor12-banner-slider-' . $id);
 
-echo "<div id='{$id}'>";
+echo "<div id='{$id}' class='hidden-xs'>";
 
 foreach ($banners as $banner) {
 
@@ -67,7 +67,7 @@ foreach ($banners as $banner) {
 
 echo "</div>";
 
-echo "<div id='{$id}-mobile'>";
+echo "<div id='{$id}-mobile' class='visible-xs'>";
 
 foreach ($banners as $banner) {
 
