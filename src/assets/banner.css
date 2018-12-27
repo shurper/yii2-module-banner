@@ -28,3 +28,12 @@ a.btn-banner-add {
 #bannerModal img {
     max-width: 100%;
 }
+
+
+img.banner-preview {
+    max-width: 250px;
+    border: 1px #ccc solid;
+    padding: 1px;
+    border-radius: 2px;
+    width: 100%;
+}

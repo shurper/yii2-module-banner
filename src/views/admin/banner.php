@@ -9,15 +9,19 @@
  * @var $model \floor12\banner\models\AdsBannerFilter;
  */
 
+use backend\assets\VendorAsset;
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsBanner;
 use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalHelper;
+use floor12\files\assets\LightboxAsset;
 use rmrevin\yii\fontawesome\FontAwesome;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
+VendorAsset::register($this);
+LightboxAsset::register($this);
 BannerAsset::register($this);
 
 $this->title = 'Баннеры';
@@ -41,6 +45,16 @@ echo GridView::widget([
     'layout' => "{items}\n{pager}\n{summary}",
     'columns' => [
         'id',
+        [
+            'header' => 'Файл баннера',
+            'content' => function (AdsBanner $model) {
+                if ($model->file_desktop)
+                    return Html::a(Html::img($model->file_desktop->hrefPreview, ['class' => 'banner-preview']), $model->file_desktop, [
+                        'data-lightbox' => 'banner-gallary',
+                        'data-pjax' => '0'
+                    ]);
+            }
+        ],
         [
             'attribute' => 'title',
             'content' => function (AdsBanner $model): string {

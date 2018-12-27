@@ -10,16 +10,6 @@ $(document).on('change', '#adsplace-slider', function () {
 })
 
 
-// function listenBanner(event) {
-//     console.log(event.target);
-// }
-
-// $('#banner11').on('click', function (event) {
-//
-//
-// });
-
-
 var iframe = $('#banner11');
 iframe.on("load", function () { //Make sure it is fully loaded
     iframe.contents().click(function (event) {
