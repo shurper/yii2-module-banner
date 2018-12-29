@@ -9,7 +9,6 @@
  * @var $model \floor12\banner\models\AdsBannerFilter;
  */
 
-use backend\assets\VendorAsset;
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsBanner;
 use floor12\banner\widgets\TabWidget;
@@ -20,7 +19,6 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
-VendorAsset::register($this);
 LightboxAsset::register($this);
 BannerAsset::register($this);
 
