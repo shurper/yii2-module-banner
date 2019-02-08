@@ -40,6 +40,7 @@ JS;
 
 $this->registerJsFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', ['depends' => ['yii\bootstrap\BootstrapAsset']]);
 $this->registerCssFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css');
+$this->registerCssFile('//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css');
 $this->registerJs($jsCode, View::POS_READY, 'floor12-banner-slider-' . $id);
 
 echo "<div id='{$id}' class='hidden-xs'>";
