@@ -9,17 +9,19 @@
 namespace floor12\banner\controllers;
 
 use floor12\banner\models\AdsBanner;
+use floor12\banner\models\AdsBannerFilter;
 use floor12\banner\models\AdsPlace;
+use floor12\banner\models\AdsPlaceFilter;
+use floor12\banner\models\AdsPopPlaceFilter;
 use floor12\banner\models\AdsPopup;
 use floor12\banner\models\AdsPopupFilter;
-use yii\web\Controller;
-use \Yii;
-use floor12\banner\models\AdsBannerFilter;
-use floor12\banner\models\AdsPlaceFilter;
-use floor12\editmodal\EditModalAction;
+use floor12\banner\models\AdsPopupPlace;
 use floor12\editmodal\DeleteAction;
+use floor12\editmodal\EditModalAction;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
 
 /** Контроллер для управления баннерами
  * Class AdminController
@@ -92,6 +94,17 @@ class AdminController extends Controller
         return $this->render('popup', ['model' => $model]);
     }
 
+    /** Страница управления pop-up площадками
+     * @return string
+     */
+    public function actionPopPlace(): string
+    {
+        $model = new AdsPopPlaceFilter();
+        $model->load(Yii::$app->request->get());
+        $model->validate();
+        return $this->render('popup_places', ['model' => $model]);
+    }
+
     /** Подключаем необходимые экшены для редактирования и удаления площадок и баннеров
      *  Для обеспечения этого функционала используем пакет floor12\editmodal для редактирования в модальном окне
      * @return array
@@ -99,27 +112,31 @@ class AdminController extends Controller
     public function actions(): array
     {
         return [
+            // Формы
             'place-form' => [
                 'class' => EditModalAction::class,
                 'model' => AdsPlace::class,
                 'view' => '_form_place',
                 'message' => 'Площадка сохранена',
             ],
-            'place-delete' => [
-                'class' => DeleteAction::class,
-                'model' => AdsPlace::class,
-                'message' => 'Площадка удалена',
+            'popup-place-form' => [
+                'class' => EditModalAction::class,
+                'model' => AdsPopupPlace::class,
+                'view' => '_form_popup_place',
+                'message' => 'Площадка сохранена',
             ],
             'popup-form' => [
                 'class' => EditModalAction::class,
                 'model' => AdsPopup::class,
                 'view' => '_form_popup',
                 'message' => 'Баннер сохранен',
-            ],
-            'popup-delete' => [
-                'class' => DeleteAction::class,
-                'model' => AdsPopup::class,
-                'message' => 'Баннер удален',
+                'viewParams' => [
+                    'places' => AdsPopupPlace::find()
+                        ->select('title')
+                        ->orderBy('title')
+                        ->indexBy('id')
+                        ->column()
+                ]
             ],
             'banner-form' => [
                 'class' => EditModalAction::class,
@@ -134,10 +151,26 @@ class AdminController extends Controller
                         ->column()
                 ]
             ],
+            // Удаления
+            'place-delete' => [
+                'class' => DeleteAction::class,
+                'model' => AdsPlace::class,
+                'message' => 'Площадка удалена',
+            ],
+            'popup-delete' => [
+                'class' => DeleteAction::class,
+                'model' => AdsPopup::class,
+                'message' => 'Баннер удален',
+            ],
             'banner-delete' => [
                 'class' => DeleteAction::class,
                 'model' => AdsBanner::class,
                 'message' => 'Баннер удален',
+            ],
+            'popup-place-delete' => [
+                'class' => DeleteAction::class,
+                'model' => AdsPopupPlace::class,
+                'message' => 'Площадка удалена',
             ]
         ];
     }

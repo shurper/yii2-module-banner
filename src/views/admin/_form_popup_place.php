@@ -11,11 +11,8 @@
  *
  */
 
-use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-use floor12\files\components\FileInputWidget;
-use kartik\select2\Select2;
-use \kartik\date\DatePicker;
+use yii\widgets\ActiveForm;
 
 $datePickerOptions = [
     'language' => 'ru',
@@ -40,41 +37,13 @@ $form = ActiveForm::begin([
     <?= $form->errorSummary($model); ?>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-9">
             <?= $form->field($model, 'title') ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'show_start')->widget(DatePicker::class, $datePickerOptions) ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'show_end')->widget(DatePicker::class, $datePickerOptions) ?>
         </div>
         <div class="col-md-3" style="padding-top: 31px;">
             <?= $form->field($model, 'status')->checkbox() ?>
         </div>
     </div>
-
-
-    <div class="row">
-        <div class="col-md-9">
-            <?= $form->field($model, 'href') ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'repeat_period')->dropDownList($model->periods) ?>
-        </div>
-    </div>
-
-    <?= $form->field($model, 'place_ids')->widget(Select2::class, [
-        'data' => $places,
-        'language' => 'ru',
-        'options' => ['multiple' => true],
-        'pluginOptions' => [
-            'allowClear' => true
-        ],
-    ]) ?>
-
-
-    <?= $form->field($model, 'file_desktop')->widget(FileInputWidget::class, []) ?>
 
 </div>
 

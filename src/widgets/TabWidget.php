@@ -8,9 +8,9 @@
 
 namespace floor12\banner\widgets;
 
-use yii\helpers\Url;
 use yii\base\Widget;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 class TabWidget extends Widget
 {
@@ -25,12 +25,16 @@ class TabWidget extends Widget
                 'href' => Url::toRoute(['banner'])
             ],
             [
-                'name' => 'Площадки',
+                'name' => 'Pop-up',
+                'href' => Url::toRoute(['popup'])
+            ],
+            [
+                'name' => 'Площадки для баннеров',
                 'href' => Url::toRoute(['place'])
             ],
             [
-                'name' => 'Pop-up',
-                'href' => Url::toRoute(['popup'])
+                'name' => 'Площадки для pop-up',
+                'href' => Url::toRoute(['pop-place'])
             ],
         ];
     }

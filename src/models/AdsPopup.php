@@ -2,8 +2,9 @@
 
 namespace floor12\banner\models;
 
-use \floor12\files\components\FileBehaviour;
+use floor12\files\components\FileBehaviour;
 use floor12\files\models\File;
+use voskobovich\linker\LinkerBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -59,7 +60,8 @@ class AdsPopup extends ActiveRecord
             [['title', 'href'], 'string', 'max' => 255],
             ['file_desktop', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
-            ['href', 'url', 'defaultScheme' => 'https']
+            ['href', 'url', 'defaultScheme' => 'https'],
+            [['place_ids'], 'each', 'rule' => ['integer']],
 
         ];
     }
@@ -80,7 +82,18 @@ class AdsPopup extends ActiveRecord
             'clicks' => 'Клики',
             'file_desktop' => 'Изображение',
             'repeat_period' => 'Период повторного показа',
+            'place_ids' => 'Связанные площадки'
         ];
+    }
+
+    /** Связь баннера с площадками
+     * @return ActiveQuery
+     */
+    public function getPlaces(): ActiveQuery
+    {
+        return $this
+            ->hasMany(AdsPopupPlace::class, ['id' => 'place_id'])
+            ->viaTable('ads_popup_place_popup', ['popup_id' => 'id']);
     }
 
     /**
@@ -92,6 +105,12 @@ class AdsPopup extends ActiveRecord
             'files' => [
                 'class' => FileBehaviour::class,
                 'attributes' => ['file_desktop']
+            ],
+            'ManyToManyBehavior' => [
+                'class' => LinkerBehavior::class,
+                'relations' => [
+                    'place_ids' => 'places',
+                ],
             ],
         ];
     }
