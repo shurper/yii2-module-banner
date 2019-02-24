@@ -119,6 +119,26 @@ class AdsBanner extends ActiveRecord
         ];
     }
 
+    /** Этот метод мы добавляем исключительно чтобы иметь возможность делать жадную загрузку изображений
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFile_desktop()
+    {
+        return $this->hasOne(File::class, ['object_id' => 'id'])
+            ->andWhere(['class' => self::class, 'field' => 'file_desktop'])
+            ->orderBy('ordering');
+    }
+
+    /** Этот метод мы добавляем исключительно чтобы иметь возможность делать жадную загрузку изображений
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFile_mobile()
+    {
+        return $this->hasOne(File::class, ['object_id' => 'id'])
+            ->andWhere(['class' => self::class, 'field' => 'file_mobile'])
+            ->orderBy('ordering');
+    }
+
     /** Удобно использовать возможность привести объект к строке
      * @return string
      */

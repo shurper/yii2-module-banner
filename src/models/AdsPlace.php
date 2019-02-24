@@ -86,7 +86,7 @@ class AdsPlace extends ActiveRecord
      */
     public function getBannersActive(): AdsBannerQuery
     {
-        return $this->getBanners()->orderBy('weight DESC, id')->active();
+        return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
     }
 
     /**
