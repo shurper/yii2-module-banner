@@ -21,6 +21,7 @@ use yii\db\ActiveRecord;
  * @property string $href Ссылка
  * @property int $views Показы
  * @property int $clicks Клики
+ * @property int $archive Архивный
  * @property array $place_ids Массив айдишников связанных площадок
  * @property AdsPlace[] $places Связанные площадки
  * @property File $file_desktop Файл баннера для декстоп версии
@@ -54,7 +55,7 @@ class AdsBanner extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['status', 'views', 'clicks', 'weight'], 'integer'],
+            [['status', 'views', 'clicks', 'weight', 'archive'], 'integer'],
             [['title'], 'required'],
             [['show_start', 'show_end'], 'safe'],
             [['title', 'href'], 'string', 'max' => 255],
@@ -96,7 +97,8 @@ class AdsBanner extends ActiveRecord
             'file_mobile' => 'Изображение (мобильный)',
             'place_ids' => 'Связанные площадки',
             'weight' => 'Вес баннера',
-            'type' => 'Тип баннера'
+            'type' => 'Тип баннера',
+            'archive' => 'Архивный'
         ];
     }
 

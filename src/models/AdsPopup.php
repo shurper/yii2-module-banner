@@ -17,6 +17,7 @@ use yii\db\ActiveRecord;
  * @property string $show_start Начало показа
  * @property string $show_end Окончание показа
  * @property string $href Ссылка
+ * @property int $archive Архивный
  * @property string $repeat_period Период повторного показа
  * @property int $views Показы
  * @property int $clicks Клики
@@ -54,7 +55,7 @@ class AdsPopup extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['status', 'views', 'clicks', 'repeat_period'], 'integer'],
+            [['status', 'views', 'clicks', 'repeat_period', 'archive'], 'integer'],
             [['title'], 'required'],
             [['show_start', 'show_end'], 'safe'],
             [['title', 'href'], 'string', 'max' => 255],
@@ -82,7 +83,8 @@ class AdsPopup extends ActiveRecord
             'clicks' => 'Клики',
             'file_desktop' => 'Изображение',
             'repeat_period' => 'Период повторного показа',
-            'place_ids' => 'Связанные площадки'
+            'place_ids' => 'Связанные площадки',
+            'archive' => 'Архивный'
         ];
     }
 

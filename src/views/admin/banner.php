@@ -17,6 +17,7 @@ use floor12\files\assets\LightboxAsset;
 use rmrevin\yii\fontawesome\FontAwesome;
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
 LightboxAsset::register($this);
@@ -33,7 +34,37 @@ echo Html::a(FontAwesome::icon('plus') . " добавить баннер", null,
     'class' => 'btn btn-sm btn-primary btn-banner-add'
 ]);
 
-echo Html::tag('br');
+$form = ActiveForm::begin([
+    'method' => 'GET',
+    'options' => ['class' => 'autosubmit', 'data-container' => '#items'],
+    'enableClientValidation' => false,
+]); ?>
+    <div class="filter-block">
+        <div class="row">
+
+            <div class="col-md-8">
+                <?= $form->field($model, 'filter')
+                    ->label(false)
+                    ->textInput(['placeholder' => 'Поиск по баннерам', 'autofocus' => true]) ?>
+            </div>
+
+            <div class="col-md-2">
+                <?= $form->field($model, "status")
+                    ->label(false)
+                    ->dropDownList(['Активные', 'Выключенные'], ['prompt' => 'Все статусы']) ?>
+            </div>
+
+            <div class="col-md-2">
+                <?= $form->field($model, "archive")
+                    ->label(false)
+                    ->dropDownList(['Актуальные', 'Архивные']) ?>
+            </div>
+
+        </div>
+    </div>
+
+<?php
+ActiveForm::end();
 
 Pjax::begin(['id' => 'items']);
 

@@ -19,6 +19,7 @@ class BannerAsset extends AssetBundle
     ];
 
     public $js = [
+        'autosubmit.js',
         'banner.js'
     ];
 

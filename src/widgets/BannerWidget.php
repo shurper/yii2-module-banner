@@ -8,8 +8,8 @@
 
 namespace floor12\banner\widgets;
 
+use \Yii;
 use floor12\banner\models\AdsPlace;
-use Yii;
 use yii\base\Widget;
 
 class BannerWidget extends Widget
@@ -29,7 +29,7 @@ class BannerWidget extends Widget
         if (Yii::$app->request->method == 'HEAD')
             return false;
 
-        $this->_place = AdsPlace::find()->one();
+        $this->_place = AdsPlace::findOne($this->place_id);
 
         // Если не найдена площадка - ничего не делаем
         if (!$this->_place)

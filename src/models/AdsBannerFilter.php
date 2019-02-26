@@ -8,13 +8,15 @@
 
 namespace floor12\banner\models;
 
-use \yii\base\Model;
+use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 
 class AdsBannerFilter extends Model
 {
     public $filter;
+    public $status;
+    public $archive = 0;
 
     /**@inheritdoc
      * @return array
@@ -22,7 +24,8 @@ class AdsBannerFilter extends Model
     public function rules(): array
     {
         return [
-            ['filter', 'string', 'max' => 255]
+            ['filter', 'string', 'max' => 255],
+            [['status', 'archive'], 'integer'],
         ];
     }
 
@@ -35,8 +38,14 @@ class AdsBannerFilter extends Model
         if (!$this->validate())
             throw new BadRequestHttpException('Model validation error');
 
+        $quiery = AdsBanner::find()
+            ->andFilterWhere(['LIKE', 'title', $this->filter])
+            ->andFilterWhere(['LIKE', 'status', $this->status])
+            ->andFilterWhere(['LIKE', 'archive', $this->archive]);
+
         return new ActiveDataProvider([
-            'query' => AdsBanner::find()->andFilterWhere(['LIKE', 'title', $this->filter])
+            'query' => $quiery,
+            'sort' => ['defaultOrder' => ['id' => SORT_DESC]]
         ]);
     }
 }
