@@ -13,8 +13,8 @@ use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsBanner;
 use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalHelper;
+use floor12\editmodal\IconHelper;
 use floor12\files\assets\LightboxAsset;
-use rmrevin\yii\fontawesome\FontAwesome;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -29,7 +29,7 @@ echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 
-echo Html::a(FontAwesome::icon('plus') . " добавить баннер", null, [
+echo Html::a(IconHelper::PLUS . " добавить баннер", null, [
     'onclick' => EditModalHelper::showForm('banner/admin/banner-form', 0),
     'class' => 'btn btn-sm btn-primary btn-banner-add'
 ]);
@@ -106,8 +106,8 @@ echo GridView::widget([
         ['contentOptions' => ['style' => 'min-width:100px; text-align:right;'],
             'content' => function (AdsBanner $model) {
                 return
-                    Html::a(FontAwesome::icon('pencil'), NULL, ['onclick' => EditModalHelper::showForm('banner/admin/banner-form', $model->id), 'class' => 'btn btn-default btn-sm']) . " " .
-                    Html::a(FontAwesome::icon('trash'), NULL, ['onclick' => EditModalHelper::deleteItem('banner/admin/banner-delete', $model->id), 'class' => 'btn btn-default btn-sm']);
+                    EditModalHelper::editBtn('/banner/admin/banner-form', $model->id) .
+                    EditModalHelper::deleteBtn('/banner/admin/banner-delete', $model->id);
             },
         ]
     ]

@@ -9,14 +9,14 @@
  * @var $model \floor12\banner\models\AdsPlaceFilter;
  */
 
-use floor12\banner\widgets\TabWidget;
-use yii\helpers\Html;
-use yii\widgets\Pjax;
-use yii\grid\GridView;
-use rmrevin\yii\fontawesome\FontAwesome;
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsPlace;
+use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalHelper;
+use floor12\editmodal\IconHelper;
+use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\widgets\Pjax;
 
 BannerAsset::register($this);
 
@@ -26,7 +26,7 @@ echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 
-echo Html::a(FontAwesome::icon('plus') . " добавить площадку", null, [
+echo Html::a(IconHelper::PLUS. " добавить площадку", null, [
     'onclick' => EditModalHelper::showForm('banner/admin/place-form', 0),
     'class' => 'btn btn-sm btn-primary btn-banner-add'
 ]);
@@ -66,8 +66,8 @@ echo GridView::widget([
             'contentOptions' => ['style' => 'min-width:100px; text-align:right;'],
             'content' => function (AdsPlace $model) {
                 return
-                    Html::a(FontAwesome::icon('pencil'), NULL, ['onclick' => EditModalHelper::showForm('banner/admin/place-form', $model->id), 'class' => 'btn btn-default btn-sm']) . " " .
-                    Html::a(FontAwesome::icon('trash'), NULL, ['onclick' => EditModalHelper::deleteItem('banner/admin/place-delete', $model->id), 'class' => 'btn btn-default btn-sm']);
+                    EditModalHelper::editBtn('/banner/admin/place-form', $model->id) .
+                    EditModalHelper::deleteBtn('/banner/admin/place-delete', $model->id);
             },
         ]
     ]

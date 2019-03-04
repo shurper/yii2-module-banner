@@ -30,7 +30,7 @@ $form = ActiveForm::begin([
 
 ?>
 <div class="modal-header">
-    <h2><?= $model->isNewRecord ? "Добавление pop-up баннера" : "Редактирование pop-up баннера"; ?></h2>
+    <h2><?= $model->isNewRecord ? "Добавление pop-up площадки" : "Редактирование pop-up площадки"; ?></h2>
 </div>
 <div class="modal-body">
 
