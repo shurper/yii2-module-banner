@@ -18,7 +18,9 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
+use yii\bootstrap\BootstrapAsset;
 
+BootstrapAsset::register($this);
 BannerAsset::register($this);
 
 $this->title = 'Pop-up';

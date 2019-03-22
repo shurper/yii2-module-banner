@@ -14,10 +14,12 @@ use floor12\banner\models\AdsPopupPlace;
 use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalHelper;
 use floor12\editmodal\IconHelper;
+use yii\bootstrap\BootstrapAsset;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
 
+BootstrapAsset::register($this);
 BannerAsset::register($this);
 
 $this->title = 'Pop-up';

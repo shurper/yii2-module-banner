@@ -17,7 +17,9 @@ use floor12\editmodal\IconHelper;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
+use yii\bootstrap\BootstrapAsset;
 
+BootstrapAsset::register($this);
 BannerAsset::register($this);
 
 $this->title = 'Баннерные площадки';
