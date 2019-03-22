@@ -37,3 +37,25 @@ img.banner-preview {
     border-radius: 2px;
     width: 100%;
 }
+
+.img-responsive {
+    max-width: 100%;
+}
+
+.visible-xs,
+.visible-sm,
+.visible-md,
+.visible-lg {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none !important;
+    }
+
+    .visible-xs {
+        display: block !important;
+    }
+}
+
