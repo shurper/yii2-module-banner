@@ -29,59 +29,35 @@ $jsCode = <<< JS
         autoplaySpeed: {$place->slider_time},
     });
 
- $('#{$id}-mobile').slick({
-        vertical :  {$place->vertical},
-        arrows: {$place->arrows},
-        autoplay: true,
-        accessibility: false,
-        adaptiveHeight: true,
-        autoplaySpeed: {$place->slider_time},
-    });
+
     
 JS;
 
 $this->registerJs($jsCode, View::POS_READY, 'floor12-banner-slider-' . $id);
 
-echo "<div id='{$id}' class='hidden-xs'>";
+echo "<div id='{$id}'>";
 
 foreach ($banners as $banner) {
 
-    if ($banner->file_mobile) {
-        $img = Html::img($banner->file_desktop, ['class' => 'img-responsive hidden-xs']);
-    } else
-        if ($banner->type == AdsBanner::TYPE_IMAGE)
-            $img = Html::img($banner->file_desktop, ['class' => 'img-responsive']);
-        else
-            $img = Html::tag('iframe', null, [
-                'src' => $banner->webPath,
-                'class' => 'f12-rich-banner',
-                'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
-            ]);
+    if ($banner->type == AdsBanner::TYPE_IMAGE)
+        $img = "<picture>
+                <source type='image/webp' media='(min-width: 700px)' srcset='{$banner->file_desktop->getPreviewWebPath(1920,0,true)} 1x'>
+                <source type='image/webp' media='(min-width: 700px)' srcset='{$banner->file_desktop->getPreviewWebPath(3840,true)} 2x'>              
+                <source type='image/webp' srcset='{$banner->file_mobile->getPreviewWebPath(700,true)} 1x'>
+                <source type='image/webp' srcset='{$banner->file_mobile->getPreviewWebPath(1400,true)} 2x'>
+                <source type='{$banner->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banner->file_desktop->getPreviewWebPath(1920)} 1x'>
+                <source type='{$banner->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banner->file_desktop->getPreviewWebPath(3840)} 2x'>              
+                <source type='{$banner->file_desktop->content_type}' srcset='{$banner->file_mobile->getPreviewWebPath(700)} 1x'>
+                <source type='{$banner->file_desktop->content_type}' srcset='{$banner->file_mobile->getPreviewWebPath(1400)} 2x'>
+                <img src='2' class='img-responsive' alt='{$banner->title}'>
+            </picture>";
 
-
-    if ($banner->href && $banner->type == AdsBanner::TYPE_IMAGE)
-        echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], ['target' => '_blank']);
     else
-        echo $img;
-}
-
-echo "</div>";
-
-echo "<div id='{$id}-mobile' class='visible-xs'>";
-
-foreach ($banners as $banner) {
-
-    if ($banner->file_mobile) {
-        $img = Html::img($banner->file_mobile, ['class' => 'img-responsive visible-xs']);
-    } else
-        if ($banner->type == AdsBanner::TYPE_IMAGE)
-            $img = Html::img($banner->file_desktop, ['class' => 'img-responsive']);
-        else
-            $img = Html::tag('iframe', null, [
-                'src' => $banner->webPath,
-                'class' => 'f12-rich-banner',
-                'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
-            ]);
+        $img = Html::tag('iframe', null, [
+            'src' => $banner->webPath,
+            'class' => 'f12-rich-banner',
+            'data-href' => $banner->href ? Url::toRoute(['/banner/redirect', 'id' => $banner->id]) : '',
+        ]);
 
 
     if ($banner->href && $banner->type == AdsBanner::TYPE_IMAGE)
