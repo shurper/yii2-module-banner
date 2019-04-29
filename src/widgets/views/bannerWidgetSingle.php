@@ -16,18 +16,25 @@ use yii\helpers\Url;
 
 BannerAsset::register($this);
 
-if ($banners->file_mobile) {
-    $img = Html::img($banners->file_desktop, ['class' => 'img-responsive hidden-xs']);
-    $img .= Html::img($banners->file_mobile, ['class' => 'img-responsive visible-xs']);
-} else
-    if ($banners->type == AdsBanner::TYPE_IMAGE)
-        $img = Html::img($banners->file_desktop, ['class' => 'img-responsive']);
-    else
-        $img = Html::tag('iframe', null, [
-            'src' => $banners->webPath,
-            'class' => 'f12-rich-banner',
-            'data-href' => $banners->href ? Url::toRoute(['/banner/redirect', 'id' => $banners->id]) : '',
-        ]);
+
+if ($banners->type == AdsBanner::TYPE_IMAGE)
+    $img = "<picture>
+                <source type='image/webp' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920,0,true)} 1x'>
+                <source type='image/webp' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(3840,true)} 2x'>              
+                <source type='image/webp' media='(max-width: 700px)' srcset='{$banners->file_mobile->getPreviewWebPath(700,true)} 1x'>
+                <source type='image/webp' media='(max-width: 700px)' srcset='{$banners->file_mobile->getPreviewWebPath(1400,true)} 2x'>
+                <source type='{$banners->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920)} 1x'>
+                <source type='{$banners->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(3840)} 2x'>              
+                <source type='{$banners->file_desktop->content_type}' srcset='{$banners->file_mobile->getPreviewWebPath(700)} 1x'>
+                <source type='{$banners->file_desktop->content_type}' srcset='{$banners->file_mobile->getPreviewWebPath(1400)} 2x'>
+                <img src='{$banners->file_desktop->getPreviewWebPath(1920)}' class='img-responsive' alt='{$banners->title}'>
+            </picture>";
+else
+    $img = Html::tag('iframe', null, [
+        'src' => $banners->webPath,
+        'class' => 'f12-rich-banner',
+        'data-href' => $banners->href ? Url::toRoute(['/banner/redirect', 'id' => $banners->id]) : '',
+    ]);
 
 
 if ($banners->href && $banners->type == AdsBanner::TYPE_IMAGE)
