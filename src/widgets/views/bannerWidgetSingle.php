@@ -18,13 +18,22 @@ BannerAsset::register($this);
 
 
 if ($banners->type == AdsBanner::TYPE_IMAGE)
-    $img = "<picture>
+
+
+    if ($banners->file_mobile)
+        $img = "<picture>
                 <source type='image/webp' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920,0,true)} 1x, {$banners->file_desktop->getPreviewWebPath(3840,true)} 2x'>              
                 <source type='image/webp' media='(max-width: 700px)' srcset='{$banners->file_mobile->getPreviewWebPath(700,true)} 1x, {$banners->file_mobile->getPreviewWebPath(1400,true)} 2x'>
                 <source type='{$banners->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920)} 1x, {$banners->file_desktop->getPreviewWebPath(3840)} 2x'>
                 <source type='{$banners->file_desktop->content_type}' srcset='{$banners->file_mobile->getPreviewWebPath(700)} 1x, {$banners->file_mobile->getPreviewWebPath(1400)} 2x'>
                 <img src='{$banners->file_desktop->getPreviewWebPath(1920)}' class='img-responsive' alt='{$banners->title}'>
-            </picture>"; 
+            </picture>";
+    else
+        $img = "<picture>
+                <source type='image/webp' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920,0,true)} 1x, {$banners->file_desktop->getPreviewWebPath(3840,true)} 2x'>              
+                <source type='{$banners->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920)} 1x, {$banners->file_desktop->getPreviewWebPath(3840)} 2x'>
+                <img src='{$banners->file_desktop->getPreviewWebPath(1920)}' class='img-responsive' alt='{$banners->title}'>
+            </picture>";
 else
     $img = Html::tag('iframe', null, [
         'src' => $banners->webPath,
