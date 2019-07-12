@@ -22,7 +22,7 @@ class SlickAsset extends AssetBundle
     ];
 
     public $depends = [
+        'yii\web\JqueryAsset',
         'yii\bootstrap\BootstrapAsset',
-        'yii\web\JqueryAsset'
     ];
 }
