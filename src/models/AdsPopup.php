@@ -51,6 +51,15 @@ class AdsPopup extends ActiveRecord
 
     /**
      * {@inheritdoc}
+     * @return AdsPopupQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new AdsPopupQuery(get_called_class());
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -58,7 +67,8 @@ class AdsPopup extends ActiveRecord
             [['status', 'views', 'clicks', 'repeat_period', 'archive'], 'integer'],
             [['title'], 'required'],
             [['show_start', 'show_end'], 'safe'],
-            [['title', 'href'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
+            [['href'], 'string', 'max' => 2048],
             ['file_desktop', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
             ['href', 'url', 'defaultScheme' => 'https'],
@@ -150,16 +160,6 @@ class AdsPopup extends ActiveRecord
             $this->show_end = date("d.m.Y", strtotime($this->show_end));
 
         parent::afterFind();
-    }
-
-
-    /**
-     * {@inheritdoc}
-     * @return AdsPopupQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new AdsPopupQuery(get_called_class());
     }
 
     /** Увеличиваем счетчик просмотров

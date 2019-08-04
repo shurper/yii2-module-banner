@@ -51,6 +51,15 @@ class AdsBanner extends ActiveRecord
 
     /**
      * {@inheritdoc}
+     * @return AdsBannerQuery the active query used by this AR class.
+     */
+    public static function find()
+    {
+        return new AdsBannerQuery(get_called_class());
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -59,7 +68,7 @@ class AdsBanner extends ActiveRecord
             [['title'], 'required'],
             [['show_start', 'show_end'], 'safe'],
             [['title'], 'string', 'max' => 255],
-            [['href'], 'string'],
+            [['href'], 'string', 'max' => 2048],
             ['file_desktop', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_mobile', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
@@ -177,16 +186,6 @@ class AdsBanner extends ActiveRecord
         parent::afterFind();
     }
 
-
-    /**
-     * {@inheritdoc}
-     * @return AdsBannerQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new AdsBannerQuery(get_called_class());
-    }
-
     /** Увеличиваем счетчик просмотров
      *  Ради 2х строчек кода не буду выносить этот функционал в отдельный класс, хотя может в будущем.
      * @return bool
@@ -232,19 +231,6 @@ class AdsBanner extends ActiveRecord
     }
 
     /**
-     * @return bool|string|void
-     */
-    public function getWebrootPath()
-    {
-        if ($this->type == self::TYPE_IMAGE)
-            return;
-        else {
-            return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebrootPath . '/' . $this->file_desktop->hash . '/');
-        }
-    }
-
-
-    /**
      * @throws ErrorException
      */
     protected function publish()
@@ -258,6 +244,18 @@ class AdsBanner extends ActiveRecord
             } else {
                 throw new ErrorException('Rich banner zip extracting error.');
             }
+        }
+    }
+
+    /**
+     * @return bool|string|void
+     */
+    public function getWebrootPath()
+    {
+        if ($this->type == self::TYPE_IMAGE)
+            return;
+        else {
+            return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebrootPath . '/' . $this->file_desktop->hash . '/');
         }
     }
 }

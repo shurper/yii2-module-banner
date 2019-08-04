@@ -12,7 +12,8 @@ class m190802_161902_change_banner_href_field_size extends Migration
      */
     public function safeUp()
     {
-        $this->alterColumn('{{%ads_banner}}', 'href', $this->text());
+        $this->alterColumn('{{%ads_banner}}', 'href', $this->string(2048)->null());
+        $this->alterColumn('{{%ads_popup}}', 'href', $this->string(2048)->null());
     }
 
     /**
@@ -21,5 +22,6 @@ class m190802_161902_change_banner_href_field_size extends Migration
     public function safeDown()
     {
         $this->alterColumn('{{%ads_banner}}', 'href', $this->string(255));
+        $this->alterColumn('{{%ads_popup}}', 'href', $this->string(255));
     }
 }
