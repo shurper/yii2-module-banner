@@ -29,6 +29,10 @@ a.btn-banner-add {
     max-width: 100%;
 }
 
+.slick-slide img {
+    display: block;
+    width: 100%;
+}
 
 img.banner-preview {
     max-width: 200px;
