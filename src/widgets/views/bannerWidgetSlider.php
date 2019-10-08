@@ -50,8 +50,8 @@ foreach ($banners as $banner) {
             </picture>";
         else
             $img = "<picture>
-                <source type='image/webp' media='(min-width: 700px)' srcset='{$banner->file_desktop->getPreviewWebPath(1920, 0, true)} 1x, {$banner->file_desktop->getPreviewWebPath(3840,0, true)} 2x'>              
-                <source type='{$banner->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banner->file_desktop->getPreviewWebPath(1920)} 1x, {$banner->file_desktop->getPreviewWebPath(3840)} 2x'>
+                <source type='image/webp' srcset='{$banner->file_desktop->getPreviewWebPath(1920, 0, true)} 1x, {$banner->file_desktop->getPreviewWebPath(3840,0, true)} 2x'>              
+                <source type='{$banner->file_desktop->content_type}' srcset='{$banner->file_desktop->getPreviewWebPath(1920)} 1x, {$banner->file_desktop->getPreviewWebPath(3840)} 2x'>
                 <img src='{$banner->file_desktop->getPreviewWebPath(1920)}' class='img-responsive' alt='{$banner->title}'>
             </picture>";
 
