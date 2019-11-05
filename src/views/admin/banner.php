@@ -15,11 +15,11 @@ use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalHelper;
 use floor12\editmodal\IconHelper;
 use floor12\files\assets\LightboxAsset;
+use yii\bootstrap\BootstrapAsset;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
-use yii\bootstrap\BootstrapAsset;
 
 LightboxAsset::register($this);
 BootstrapAsset::register($this);
@@ -80,10 +80,11 @@ echo GridView::widget([
             'header' => 'Файл баннера',
             'content' => function (AdsBanner $model) {
                 if ($model->file_desktop)
-                    return Html::a(Html::img($model->file_desktop->hrefPreview, ['class' => 'banner-preview']), $model->file_desktop, [
-                        'data-lightbox' => 'banner-gallary',
-                        'data-pjax' => '0'
-                    ]);
+                    return Html::a(Html::img($model->file_desktop->getPreviewWebPath(300), ['class' => 'banner-preview']),
+                        $model->file_desktop, [
+                            'data-lightbox' => 'banner-gallary',
+                            'data-pjax' => '0'
+                        ]);
             }
         ],
         [
