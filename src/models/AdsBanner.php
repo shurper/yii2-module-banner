@@ -4,6 +4,7 @@ namespace floor12\banner\models;
 
 use floor12\files\components\FileBehaviour;
 use floor12\files\models\File;
+use floor12\files\models\FileType;
 use voskobovich\linker\LinkerBehavior;
 use Yii;
 use yii\base\ErrorException;
@@ -211,7 +212,7 @@ class AdsBanner extends ActiveRecord
     public function getType()
     {
 
-        if ($this->file_desktop && $this->file_desktop->type != File::TYPE_IMAGE)
+        if ($this->file_desktop && $this->file_desktop->type != FileType::TYPE_IMAGE)
             return self::TYPE_RICH;
 
         return self::TYPE_IMAGE;
