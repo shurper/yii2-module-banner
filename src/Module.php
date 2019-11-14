@@ -38,6 +38,11 @@ class Module extends \yii\base\Module
      * @var string
      */
     public $bannersWebrootPath = '@webroot/banners';
+    /**
+     * Width to switch between mobile and desktop banner version
+     * @var int
+     */
+    public $transitionWidth = 700;
 
     /** @inheritdoc
      * @throws InvalidConfigException

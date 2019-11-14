@@ -8,8 +8,8 @@
 
 namespace floor12\banner\widgets;
 
-use \Yii;
 use floor12\banner\models\AdsPlace;
+use Yii;
 use yii\base\Widget;
 
 class BannerWidget extends Widget
@@ -68,7 +68,8 @@ class BannerWidget extends Widget
         return $this->render($this->_view, [
             'banners' => $this->_banners,
             'place' => $this->_place,
-            'id' => "banner" . rand(99999, 9999999)
+            'id' => "banner" . rand(99999, 9999999),
+            'transitionWidth'=>Yii::$app->getModule('banner')->transitionWidth
         ]);
     }
 

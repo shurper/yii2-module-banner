@@ -7,6 +7,9 @@
  *
  * @var $this \yii\web\View
  * @var $banners \floor12\banner\models\AdsBanner
+ * @var $place \floor12\banner\models\AdsPlace
+ * @var $id string
+ * @var $transitionWidth integer
  */
 
 use floor12\banner\assets\BannerAsset;
@@ -22,18 +25,53 @@ if ($banners->type == AdsBanner::TYPE_IMAGE)
 
     if ($banners->file_mobile)
         $img = "<picture>
-                <source type='image/webp' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920,0,true)} 1x, {$banners->file_desktop->getPreviewWebPath(3840,0,true)} 2x'>              
-                <source type='image/webp' media='(max-width: 700px)' srcset='{$banners->file_mobile->getPreviewWebPath(700,true)} 1x, {$banners->file_mobile->getPreviewWebPath(1400,true)} 2x'>
-                <source type='{$banners->file_desktop->content_type}' media='(min-width: 700px)' srcset='{$banners->file_desktop->getPreviewWebPath(1920)} 1x, {$banners->file_desktop->getPreviewWebPath(3840)} 2x'>
-                <source type='{$banners->file_desktop->content_type}' smedia='(max-width: 700px)' rcset='{$banners->file_mobile->getPreviewWebPath(700)} 1x, {$banners->file_mobile->getPreviewWebPath(1400)} 2x'>
-                <img src='{$banners->file_desktop->getPreviewWebPath(1920)}' class='img-responsive' alt='{$banners->title}'>
-            </picture>";
+                    <source 
+                        type='image/webp' 
+                        media='(min-width: {$transitionWidth}px)' 
+                        srcset='
+                            {$banners->file_desktop->getPreviewWebPath($place->desktop_width,$place->desktop_height,true)} 1x, 
+                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2),($place->desktop_height * 2),true)} 2x'>
+                                          
+                    <source 
+                        type='image/webp' 
+                        media='(max-width: {$transitionWidth}px)' 
+                        srcset='
+                            {$banners->file_mobile->getPreviewWebPath($place->mobile_width, $place->mobile_height)} 1x, 
+                            {$banners->file_mobile->getPreviewWebPath(($place->mobile_width * 2), ($place->mobile_height * 2))} 2x'>
+                    <source 
+                        type='{$banners->file_desktop->content_type}' 
+                        media='(min-width: {$transitionWidth}px)' 
+                        srcset='
+                            {$banners->file_desktop->getPreviewWebPath($place->desktop_width, $place->desktop_height)} 1x, 
+                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2), ($place->desktop_height * 2))} 2x'>
+                    <source 
+                        type='{$banners->file_desktop->content_type}' 
+                        media='(max-width: {$transitionWidth}px)' 
+                        srcset='
+                            {$banners->file_mobile->getPreviewWebPath($place->mobile_width,$place->mobile_height)} 1x, 
+                            {$banners->file_mobile->getPreviewWebPath(($place->mobile_width * 2), ($place->mobile_height * 2))} 2x'>
+                    <img 
+                        src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width, $place->desktop_height)}' 
+                        class='img-responsive' 
+                        alt='{$banners->title}'>
+                </picture>";
     else
         $img = "<picture>
-                <source type='image/webp' srcset='{$banners->file_desktop->getPreviewWebPath(1920,0,true)} 1x, {$banners->file_desktop->getPreviewWebPath(3840,0,true)} 2x'>              
-                <source type='{$banners->file_desktop->content_type}'srcset='{$banners->file_desktop->getPreviewWebPath(1920)} 1x, {$banners->file_desktop->getPreviewWebPath(3840)} 2x'>
-                <img src='{$banners->file_desktop->getPreviewWebPath(1920)}' class='img-responsive' alt='{$banners->title}'>
-            </picture>";
+                    <source 
+                        type='image/webp' 
+                        srcset='
+                            {$banners->file_desktop->getPreviewWebPath($place->desktop_width,$place->desktop_height,true)} 1x, 
+                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2),($place->desktop_height * 2),true)} 2x'>              
+                    <source 
+                        type='{$banners->file_desktop->content_type}'
+                        srcset='
+                            {$banners->file_desktop->getPreviewWebPath($place->desktop_width, $place->desktop_height)} 1x, 
+                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2),($place->desktop_height * 2))} 2x'>
+                    <img 
+                        src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width,$place->desktop_height)}' 
+                        class='img-responsive' 
+                        alt='{$banners->title}'>
+                </picture>";
 else
     $img = Html::tag('iframe', null, [
         'src' => $banners->webPath,
