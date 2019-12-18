@@ -44,17 +44,5 @@ class Module extends \yii\base\Module
      */
     public $transitionWidth = 700;
 
-    /** @inheritdoc
-     * @throws InvalidConfigException
-     */
-    public function init()
-    {
-        $webPath = Yii::getAlias($this->bannersWebrootPath);
-        if (!file_exists($webPath))
-            throw new InvalidConfigException("Папка '{$webPath}' не найдена.");
-
-        if (!is_writable($webPath))
-            throw new InvalidConfigException("Папка '{$webPath}' не доступна для записи.");
-    }
 
 }
