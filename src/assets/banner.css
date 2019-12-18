@@ -25,9 +25,12 @@ a.btn-banner-add {
     opacity: 1;
 }
 
-#bannerModal img,
-.banner-widget img {
+#bannerModal img {
     max-width: 100%;
+}
+
+.banner-widget img {
+    width: 100%;
 }
 
 .slick-slide img {
