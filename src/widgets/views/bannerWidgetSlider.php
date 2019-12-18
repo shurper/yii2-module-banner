@@ -42,7 +42,7 @@ foreach ($banners as $banner) {
 
     if ($banner->type == AdsBanner::TYPE_IMAGE)
         if ($banner->file_mobile)
-            $img = "<picture>
+            $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
                         media='(min-width: {$transitionWidth}px)' 
@@ -74,7 +74,7 @@ foreach ($banners as $banner) {
                         alt='{$banner->title}'>
                 </picture>";
         else
-            $img = "<picture>
+            $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
                         srcset='

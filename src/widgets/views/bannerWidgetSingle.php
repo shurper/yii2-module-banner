@@ -24,7 +24,7 @@ if ($banners->type == AdsBanner::TYPE_IMAGE)
 
 
     if ($banners->file_mobile)
-        $img = "<picture>
+        $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
                         media='(min-width: {$transitionWidth}px)' 
@@ -56,7 +56,7 @@ if ($banners->type == AdsBanner::TYPE_IMAGE)
                         alt='{$banners->title}'>
                 </picture>";
     else
-        $img = "<picture>
+        $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
                         srcset='

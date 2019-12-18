@@ -25,7 +25,8 @@ a.btn-banner-add {
     opacity: 1;
 }
 
-#bannerModal img {
+#bannerModal img,
+.banner-widget img {
     max-width: 100%;
 }
 
