@@ -21,7 +21,7 @@ class m190208_104714_create_pop_up_place extends Migration
         $this->createTable('{{ads_popup_place}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string(255)->notNull()->comment('Название площадки'),
-            'status' => $this->boolean()->notNull()->defaultValue(0)->comment('Выключить'),
+            'status' => $this->boolean()->notNull()->defaultValue(false)->comment('Выключить'),
         ], $tableOptions);
 
         $this->createIndex("idx-ads_popup_place-status", "{{%ads_popup_place}}", "status");

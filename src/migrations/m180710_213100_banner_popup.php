@@ -19,7 +19,7 @@ class m180710_213100_banner_popup extends Migration
 
         $this->createTable("{{%ads_popup}}", [
             'id' => $this->primaryKey(),
-            'status' => $this->boolean()->notNull()->defaultValue(0)->comment('Выключить'),
+            'status' => $this->boolean()->notNull()->defaultValue(false)->comment('Выключить'),
             'title' => $this->string(255)->notNull()->comment('Название баннера'),
             'show_start' => $this->date()->null()->comment('Начало показа'),
             'show_end' => $this->date()->null()->comment('Окончание показа'),

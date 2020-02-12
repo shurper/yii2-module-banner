@@ -20,7 +20,7 @@ class m180619_102923_banner extends Migration
         // Баннеры
         $this->createTable("{{%ads_banner}}", [
             'id' => $this->primaryKey(),
-            'status' => $this->boolean()->notNull()->defaultValue(0)->comment('Выключить'),
+            'status' => $this->boolean()->notNull()->defaultValue(false)->comment('Выключить'),
             'title' => $this->string(255)->notNull()->comment('Название баннера'),
             'show_start' => $this->date()->null()->comment('Начало показа'),
             'show_end' => $this->date()->null()->comment('Окончание показа'),
@@ -41,8 +41,8 @@ class m180619_102923_banner extends Migration
             'desktop_height' => $this->integer()->notNull()->comment('Высота (дексктоп)'),
             'mobile_width' => $this->integer()->null()->comment('Ширина (мобильный)'),
             'mobile_height' => $this->integer()->null()->comment('Высота (мобильный)'),
-            'status' => $this->boolean()->notNull()->defaultValue(0)->comment('Выключить'),
-            'slider' => $this->boolean()->notNull()->defaultValue(0)->comment('Активировать слайдер на этой площадке'),
+            'status' => $this->boolean()->notNull()->defaultValue(false)->comment('Выключить'),
+            'slider' => $this->boolean()->notNull()->defaultValue(false)->comment('Активировать слайдер на этой площадке'),
         ], $tableOptions);
 
         $this->createIndex("idx-ads_place-status", "{{%ads_place}}", "status");

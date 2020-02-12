@@ -12,8 +12,8 @@ class m190226_102147_add_archive_option extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('{{ads_banner}}', 'archive', $this->boolean()->defaultValue(0)->comment('Архивный'));
-        $this->addColumn('{{ads_popup}}', 'archive', $this->boolean()->defaultValue(0)->comment('Архивный'));
+        $this->addColumn('{{ads_banner}}', 'archive', $this->boolean()->defaultValue(false)->comment('Архивный'));
+        $this->addColumn('{{ads_popup}}', 'archive', $this->boolean()->defaultValue(false)->comment('Архивный'));
 
         $this->createIndex('idx-ads_banner-archive', '{{ads_banner}}', 'archive');
         $this->createIndex('idx-ads_popup-archive', '{{ads_banner}}', 'archive');
