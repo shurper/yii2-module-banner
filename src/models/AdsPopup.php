@@ -69,7 +69,7 @@ class AdsPopup extends ActiveRecord
             [['show_start', 'show_end'], 'safe'],
             [['title'], 'string', 'max' => 255],
             [['href'], 'string', 'max' => 2048],
-            ['file_desktop', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'gif'], 'maxFiles' => 1],
+            ['file_desktop', 'file', 'extensions' => ['jpg', 'jpeg', 'png', 'webp', 'gif', 'zip', 'svg'], 'maxFiles' => 1],
             ['file_desktop', 'required'],
             ['href', 'url', 'defaultScheme' => 'https'],
             [['place_ids'], 'each', 'rule' => ['integer']],
