@@ -256,7 +256,7 @@ class AdsBanner extends ActiveRecord
         if ($this->type == self::TYPE_IMAGE)
             return;
         else {
-            return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebrootPath . '/' . $this->file_desktop->hash . '/');
+            return Yii::getAlias(Yii::$app->getModule('banner')->bannersWebRootPath . '/' . $this->file_desktop->hash . '/');
         }
     }
 }
