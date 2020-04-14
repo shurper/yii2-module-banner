@@ -33,7 +33,7 @@ class Module extends \yii\base\Module
     /**
      * @var string Absolute path to save rich html banners
      */
-    public $bannersWebrootPath = '@webroot/banners';
+    public $bannersWebRootPath = '@webroot/banners';
     /**
      * Width to switch between mobile and desktop banner version
      * @var int
