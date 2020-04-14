@@ -1,13 +1,14 @@
 {
   "name": "floor12/yii2-module-banner",
   "description": "Advanced yii2 module for banners management.",
-  "type": "yii2-module",
   "minimum-stability": "stable",
   "keywords": [
     "floor12",
     "yii2 module",
     "yii",
     "yii2",
+    "banner",
+    "popup",
     "yii 2"
   ],
   "license": "MIT",
