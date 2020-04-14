@@ -19,9 +19,12 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use yii\bootstrap\BootstrapAsset;
+use floor12\editmodal\EditModalAsset;
 
 BootstrapAsset::register($this);
 BannerAsset::register($this);
+EditModalAsset::register($this);
+
 
 $this->title = 'Pop-up';
 
@@ -29,10 +32,12 @@ echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 
-echo Html::a(IconHelper::PLUS . " добавить баннер", null, [
-    'onclick' => EditModalHelper::showForm('banner/admin/popup-form', 0),
-    'class' => 'btn btn-sm btn-primary btn-banner-add'
-]);
+echo EditModalHelper::editBtn(
+    'popup-form',
+    0,
+    'btn btn-sm btn-primary btn-banner-add',
+    IconHelper::PLUS . " добавить баннер"
+);
 
 
 $form = ActiveForm::begin([

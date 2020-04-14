@@ -69,7 +69,7 @@ class BannerWidget extends Widget
             'banners' => $this->_banners,
             'place' => $this->_place,
             'id' => "banner" . rand(99999, 9999999),
-            'transitionWidth'=>Yii::$app->getModule('banner')->transitionWidth
+            'adaptiveBreakpoint'=>Yii::$app->getModule('banner')->adaptiveBreakpoint
         ]);
     }
 

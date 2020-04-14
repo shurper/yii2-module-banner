@@ -14,24 +14,16 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$datePickerOptions = [
-    'language' => 'ru',
-    'pluginOptions' => [
-        'autoclose' => true,
-        'format' => 'dd.mm.yyyy'
-    ]
-];
-
 $form = ActiveForm::begin([
     'options' => ['class' => 'modaledit-form'],
     'enableClientValidation' => true
 ]);
-
-
 ?>
+
 <div class="modal-header">
     <h2><?= $model->isNewRecord ? "Добавление pop-up площадки" : "Редактирование pop-up площадки"; ?></h2>
 </div>
+
 <div class="modal-body">
 
     <?= $form->errorSummary($model); ?>

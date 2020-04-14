@@ -10,8 +10,9 @@
  */
 
 use floor12\banner\assets\BannerAsset;
-use floor12\banner\models\AdsPopupPlace;
 use floor12\banner\widgets\TabWidget;
+use floor12\editmodal\EditModalAsset;
+use floor12\editmodal\EditModalColumn;
 use floor12\editmodal\EditModalHelper;
 use floor12\editmodal\IconHelper;
 use yii\bootstrap\BootstrapAsset;
@@ -21,6 +22,8 @@ use yii\widgets\Pjax;
 
 BootstrapAsset::register($this);
 BannerAsset::register($this);
+EditModalAsset::register($this);
+
 
 $this->title = 'Pop-up';
 
@@ -28,10 +31,12 @@ echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 
-echo Html::a(IconHelper::PLUS . " добавить площадку", null, [
-    'onclick' => EditModalHelper::showForm('banner/admin/popup-place-form', 0),
-    'class' => 'btn btn-sm btn-primary btn-banner-add'
-]);
+echo EditModalHelper::editBtn(
+    'popup-place-form', 
+    0, 
+    'btn btn-sm btn-primary btn-banner-add', 
+    IconHelper::PLUS . " добавить площадку"
+);
 
 echo Html::tag('br');
 
@@ -44,12 +49,10 @@ echo GridView::widget([
     'columns' => [
         'id',
         'title',
-        ['contentOptions' => ['style' => 'min-width:100px; text-align:right;'],
-            'content' => function (AdsPopupPlace $model) {
-                return
-                    EditModalHelper::editBtn('/banner/admin/popup-place-form', $model->id) .
-                    EditModalHelper::deleteBtn('/banner/admin/popup-place-delete', $model->id);
-            },
+        [
+            'class' => EditModalColumn::class,
+            'editPath' => 'popup-place-form',
+            'deletePath' => 'popup-place-delete',
         ]
     ]
 ]);

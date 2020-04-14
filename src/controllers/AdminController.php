@@ -39,7 +39,7 @@ class AdminController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'roles' => [Yii::$app->getModule('banner')->editRole],
+                        'roles' => [Yii::$app->getModule('banner')->administratorRole],
                     ],
                 ],
             ],
@@ -58,7 +58,7 @@ class AdminController extends Controller
      */
     public function init()
     {
-        $this->layout = Yii::$app->getModule('banner')->layout;
+        $this->layout = Yii::$app->getModule('banner')->adminLayout;
     }
 
     /** Страница управления баннерами

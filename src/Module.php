@@ -2,14 +2,11 @@
 
 namespace floor12\banner;
 
-use Yii;
-use yii\base\InvalidConfigException;
-
 /**
  * Banner module definition class
- * @property  string $layout
+ * @property  string $adminLayout
  * @property  string $controllerNamespace
- * @property  string $editRole
+ * @property  string $administratorRole
  */
 class Module extends \yii\base\Module
 {
@@ -18,31 +15,30 @@ class Module extends \yii\base\Module
      */
     public $controllerNamespace = 'floor12\banner\controllers';
 
-    /** Путь к макету, который используется в контроллерах управления рассылками
-     * @var string
+    /**
+     * @var string Layout alias to use it admin controller
      */
-    public $layout;
+    public $adminLayout = '@app/views/layouts/main';
 
     /**
-     * Те роли в системе, которым разрешено редактирование новостей
-     * @var array
+     * @var string Role to access admin controller
      */
-    public $editRole = '@';
+    public $administratorRole = '@';
 
-    /** Относительный путь к папке, доступной из веба, для публикации там баннеров
-     * @var string
+    /**
+     * @var string WEb path to save rich html banners
      */
     public $bannersWebPath = '@web/banners';
 
-    /** Полный путь к папке, доступной из веба, для публикации там баннеров
-     * @var string
+    /**
+     * @var string Absolute path to save rich html banners
      */
     public $bannersWebrootPath = '@webroot/banners';
     /**
      * Width to switch between mobile and desktop banner version
      * @var int
      */
-    public $transitionWidth = 700;
+    public $adaptiveBreakpoint = 700;
 
 
 }

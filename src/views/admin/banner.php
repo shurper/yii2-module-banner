@@ -12,6 +12,7 @@
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsBanner;
 use floor12\banner\widgets\TabWidget;
+use floor12\editmodal\EditModalAsset;
 use floor12\editmodal\EditModalHelper;
 use floor12\editmodal\IconHelper;
 use floor12\files\assets\LightboxAsset;
@@ -24,6 +25,7 @@ use yii\widgets\Pjax;
 LightboxAsset::register($this);
 BootstrapAsset::register($this);
 BannerAsset::register($this);
+EditModalAsset::register($this);
 
 $this->title = 'Баннеры';
 
@@ -31,10 +33,12 @@ echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 
-echo Html::a(IconHelper::PLUS . " добавить баннер", null, [
-    'onclick' => EditModalHelper::showForm('banner/admin/banner-form', 0),
-    'class' => 'btn btn-sm btn-primary btn-banner-add'
-]);
+echo EditModalHelper::editBtn(
+    'banner-form',
+    0,
+    'btn btn-sm btn-primary btn-banner-add',
+    IconHelper::PLUS . " добавить баннер"
+);
 
 $form = ActiveForm::begin([
     'method' => 'GET',
@@ -78,9 +82,10 @@ echo GridView::widget([
         'id',
         [
             'header' => 'Файл баннера',
+            'contentOptions' => ['class' => 'banner-preview'],
             'content' => function (AdsBanner $model) {
                 if ($model->file_desktop)
-                    return Html::a(Html::img($model->file_desktop->getPreviewWebPath(300), ['class' => 'banner-preview']),
+                    return Html::a(Html::img($model->file_desktop->getPreviewWebPath(300)),
                         $model->file_desktop, [
                             'data-lightbox' => 'banner-gallary',
                             'data-pjax' => '0'

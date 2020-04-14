@@ -24,6 +24,7 @@ $this->registerJs("updateAdsPlaceForm()");
 <div class="modal-header">
     <h2><?= $model->isNewRecord ? "Добавление плащадки" : "Редактирование плащадки"; ?></h2>
 </div>
+
 <div class="modal-body">
 
     <?= $form->errorSummary($model); ?>
@@ -53,9 +54,10 @@ $this->registerJs("updateAdsPlaceForm()");
         </div>
     </div>
 
-
     <div id="adsplace-form-slider-block">
-        <h3>Настройки слайдера</h3>
+        <br>
+        <h2>Настройки слайдера</h2>
+        <hr>
         <div class="row">
             <div class="col-md-4">
                 <?= $form->field($model, 'slider_direction')->dropDownList($model->directions) ?>
@@ -68,7 +70,6 @@ $this->registerJs("updateAdsPlaceForm()");
             </div>
         </div>
     </div>
-
 
 </div>
 
