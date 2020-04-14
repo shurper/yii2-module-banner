@@ -27,7 +27,7 @@ $ composer require floor12/yii2-module-banner
 
 #### Выполняем миграцию для созданию необходимых таблиц
 ```bash
-$ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-banner/src/
+$ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-banner/src/migrations
 ```
 
 #### Добавляем модуль в конфиг приложения
