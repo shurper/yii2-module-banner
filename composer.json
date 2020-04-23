@@ -1,13 +1,14 @@
 {
   "name": "floor12/yii2-module-banner",
   "description": "Advanced yii2 module for banners management.",
-  "type": "yii2-module",
   "minimum-stability": "stable",
   "keywords": [
     "floor12",
     "yii2 module",
     "yii",
     "yii2",
+    "banner",
+    "popup",
     "yii 2"
   ],
   "license": "MIT",
@@ -26,9 +27,6 @@
     "kartik-v/yii2-widget-select2": "@dev",
     "kartik-v/yii2-widget-datepicker": "@dev",
     "voskobovich/yii2-linker-behavior": "@dev"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "4.*"
   },
   "autoload": {
     "psr-4": {

@@ -12,15 +12,18 @@
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsPlace;
 use floor12\banner\widgets\TabWidget;
+use floor12\editmodal\EditModalAsset;
+use floor12\editmodal\EditModalColumn;
 use floor12\editmodal\EditModalHelper;
 use floor12\editmodal\IconHelper;
+use yii\bootstrap\BootstrapAsset;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-use yii\bootstrap\BootstrapAsset;
 
 BootstrapAsset::register($this);
 BannerAsset::register($this);
+EditModalAsset::register($this);
 
 $this->title = 'Баннерные площадки';
 
@@ -28,12 +31,12 @@ echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 
-echo Html::a(IconHelper::PLUS. " добавить площадку", null, [
-    'onclick' => EditModalHelper::showForm('banner/admin/place-form', 0),
-    'class' => 'btn btn-sm btn-primary btn-banner-add'
-]);
-
-echo Html::tag('br');
+echo EditModalHelper::editBtn(
+    'place-form',
+    0,
+    'btn btn-sm btn-primary btn-banner-add',
+    IconHelper::PLUS . " добавить площадку"
+);
 
 Pjax::begin(['id' => 'items']);
 
@@ -65,12 +68,9 @@ echo GridView::widget([
             }
         ],
         [
-            'contentOptions' => ['style' => 'min-width:100px; text-align:right;'],
-            'content' => function (AdsPlace $model) {
-                return
-                    EditModalHelper::editBtn('/banner/admin/place-form', $model->id) .
-                    EditModalHelper::deleteBtn('/banner/admin/place-delete', $model->id);
-            },
+            'class' => EditModalColumn::class,
+            'editPath' => 'place-form',
+            'deletePath' => 'place-delete',
         ]
     ]
 ]);

@@ -9,7 +9,7 @@
  * @var $banner \floor12\banner\models\AdsBanner[]
  * @var $place \floor12\banner\models\AdsPlace
  * @var $id string
- * @var $transitionWidth integer
+ * @var $adaptiveBreakpoint integer
  */
 
 use floor12\banner\assets\SlickAsset;
@@ -45,26 +45,26 @@ foreach ($banners as $banner) {
             $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
-                        media='(min-width: {$transitionWidth}px)' 
+                        media='(min-width: {$adaptiveBreakpoint}px)' 
                         srcset='
                             {$banner->file_desktop->getPreviewWebPath($place->desktop_width,$place->desktop_height,true)} 1x, 
                             {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),($place->desktop_height * 2),true)} 2x'>
                                           
                     <source 
                         type='image/webp' 
-                        media='(max-width: {$transitionWidth}px)' 
+                        media='(max-width: {$adaptiveBreakpoint}px)' 
                         srcset='
                             {$banner->file_mobile->getPreviewWebPath($place->mobile_width, $place->mobile_height)} 1x, 
                             {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2), ($place->mobile_height * 2))} 2x'>
                     <source 
                         type='{$banner->file_desktop->content_type}' 
-                        media='(min-width: {$transitionWidth}px)' 
+                        media='(min-width: {$adaptiveBreakpoint}px)' 
                         srcset='
                             {$banner->file_desktop->getPreviewWebPath($place->desktop_width, $place->desktop_height)} 1x, 
                             {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2), ($place->desktop_height * 2))} 2x'>
                     <source 
                         type='{$banner->file_desktop->content_type}' 
-                        media='(max-width: {$transitionWidth}px)' 
+                        media='(max-width: {$adaptiveBreakpoint}px)' 
                         srcset='
                             {$banner->file_mobile->getPreviewWebPath($place->mobile_width,$place->mobile_height)} 1x, 
                             {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2), ($place->mobile_height * 2))} 2x'>

@@ -63,6 +63,6 @@ class TabWidget extends Widget
                 }
             }
         }
-        return Html::tag('ul', implode("\n", $nodes), ['class' => 'nav nav-tabs']);
+        return Html::tag('ul', implode("\n", $nodes), ['class' => 'nav nav-tabs nav-tabs-banner']);
     }
 }

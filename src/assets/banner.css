@@ -1,6 +1,13 @@
-a.btn-banner-add {
+.btn-banner-add {
     float: right;
-    margin-top: -35px;
+    margin-top: -55px;
+}
+
+.modal-header h2,
+.modal-body h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
 }
 
 .striked {
@@ -38,32 +45,17 @@ a.btn-banner-add {
     width: 100%;
 }
 
-img.banner-preview {
-    max-width: 200px;
+td.banner-preview {
+    max-width: 100px;
+}
+
+td.banner-preview img {
     border: 1px #ccc solid;
     padding: 1px;
     border-radius: 2px;
     width: 100%;
 }
 
-.img-responsive {
-    max-width: 100%;
+.nav-tabs-banner {
+    margin: 0 0 20px 0;
 }
-
-.visible-xs,
-.visible-sm,
-.visible-md,
-.visible-lg {
-    display: none !important;
-}
-
-@media (max-width: 767px) {
-    .hidden-xs {
-        display: none !important;
-    }
-
-    .visible-xs {
-        display: block !important;
-    }
-}
-
