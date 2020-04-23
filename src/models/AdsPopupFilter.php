@@ -40,8 +40,8 @@ class AdsPopupFilter extends Model
 
         $quiery = AdsPopup::find()
             ->andFilterWhere(['LIKE', 'title', $this->filter])
-            ->andFilterWhere(['LIKE', 'status', $this->status])
-            ->andFilterWhere(['LIKE', 'archive', $this->archive]);
+            ->andFilterWhere(['=', 'status', $this->status])
+            ->andFilterWhere(['=', 'archive', $this->archive]);
 
         return new ActiveDataProvider([
             'query' => $quiery,
