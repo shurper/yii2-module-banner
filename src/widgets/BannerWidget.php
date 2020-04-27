@@ -15,7 +15,7 @@ use yii\base\Widget;
 class BannerWidget extends Widget
 {
     public $place_id;
-
+    public $targetBlank = true;
     private $_place;
     private $_banners;
     private $_view;
@@ -69,7 +69,8 @@ class BannerWidget extends Widget
             'banners' => $this->_banners,
             'place' => $this->_place,
             'id' => "banner" . rand(99999, 9999999),
-            'adaptiveBreakpoint'=>Yii::$app->getModule('banner')->adaptiveBreakpoint
+            'targetBlank' => $this->targetBlank,
+            'adaptiveBreakpoint' => Yii::$app->getModule('banner')->adaptiveBreakpoint
         ]);
     }
 

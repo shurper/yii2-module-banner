@@ -9,6 +9,7 @@
  * @var $banner \floor12\banner\models\AdsBanner[]
  * @var $place \floor12\banner\models\AdsPlace
  * @var $id string
+ * @var $targetBlank bool
  * @var $adaptiveBreakpoint integer
  */
 
@@ -100,7 +101,7 @@ foreach ($banners as $banner) {
 
 
     if ($banner->href && $banner->type == AdsBanner::TYPE_IMAGE)
-        echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], ['target' => '_blank']);
+        echo Html::a($img, ['/banner/redirect', 'id' => $banner->id], [$targetBlank ? ['target' => '_blank', 'id' => ''] : []]);
     else
         echo $img;
 }
