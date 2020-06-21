@@ -21,7 +21,9 @@ use yii\helpers\Url;
 BannerAsset::register($this);
 
 
-if ($banners->type == AdsBanner::TYPE_IMAGE)
+if ($banners->type == AdsBanner::TYPE_IMAGE
+    && $banner->file_desktop &&
+    is_file($banner->file_desktop->getRootPath()))
 
 
     if ($banners->file_mobile)

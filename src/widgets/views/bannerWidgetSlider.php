@@ -41,8 +41,12 @@ echo "<div id='{$id}'>";
 
 foreach ($banners as $banner) {
 
-    if ($banner->type == AdsBanner::TYPE_IMAGE)
-        if ($banner->file_mobile)
+    if (
+        $banner->type == AdsBanner::TYPE_IMAGE &&
+        $banner->file_desktop &&
+        is_file($banner->file_desktop->getRootPath())
+    )
+        if ($banner->file_mobile && is_file($banner->file_mobile->getRootPath()))
             $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
