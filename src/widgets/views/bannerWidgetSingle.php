@@ -22,8 +22,8 @@ BannerAsset::register($this);
 
 
 if ($banners->type == AdsBanner::TYPE_IMAGE
-    && $banner->file_desktop &&
-    is_file($banner->file_desktop->getRootPath()))
+    && $banners->file_desktop &&
+    is_file($banners->file_desktop->getRootPath()))
 
 
     if ($banners->file_mobile)
