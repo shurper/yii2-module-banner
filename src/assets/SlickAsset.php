@@ -12,13 +12,15 @@ use yii\web\AssetBundle;
 
 class SlickAsset extends AssetBundle
 {
+    public $sourcePath = '@vendor/floor12/yii2-module-banner/src/assets/slick';
+
     public $css = [
-        '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
-        '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css'
+        'slick.css',
+        'slick-theme.css'
     ];
 
     public $js = [
-        '//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js'
+        'slick.min.js'
     ];
 
     public $depends = [

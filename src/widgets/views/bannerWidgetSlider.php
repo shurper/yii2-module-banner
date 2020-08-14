@@ -44,34 +44,41 @@ echo "<div id='{$id}'>";
 foreach ($banners as $banner) {
     if ($banner->type === AdsBanner::TYPE_IMAGE)
         if ($banner->file_mobile)
+
+    if (
+        $banner->type == AdsBanner::TYPE_IMAGE &&
+        $banner->file_desktop &&
+        is_file($banner->file_desktop->getRootPath())
+    )
+        if ($banner->file_mobile && is_file($banner->file_mobile->getRootPath()))
             $img = "<picture class='banner-widget'>
                     <source 
                         type='image/webp' 
                         media='(min-width: {$adaptiveBreakpoint}px)' 
                         srcset='
-                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width,$place->desktop_height,true)} 1x, 
-                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),($place->desktop_height * 2),true)} 2x'>
+                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width,true)} 1x, 
+                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),true)} 2x'>
                                           
                     <source 
                         type='image/webp' 
                         media='(max-width: {$adaptiveBreakpoint}px)' 
                         srcset='
-                            {$banner->file_mobile->getPreviewWebPath($place->mobile_width, $place->mobile_height)} 1x, 
-                            {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2), ($place->mobile_height * 2))} 2x'>
+                            {$banner->file_mobile->getPreviewWebPath($place->mobile_width)} 1x, 
+                            {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2) )} 2x'>
                     <source 
                         type='{$banner->file_desktop->content_type}' 
                         media='(min-width: {$adaptiveBreakpoint}px)' 
                         srcset='
-                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width, $place->desktop_height)} 1x, 
-                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2), ($place->desktop_height * 2))} 2x'>
+                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width)} 1x, 
+                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2), )} 2x'>
                     <source 
                         type='{$banner->file_desktop->content_type}' 
                         media='(max-width: {$adaptiveBreakpoint}px)' 
                         srcset='
-                            {$banner->file_mobile->getPreviewWebPath($place->mobile_width,$place->mobile_height)} 1x, 
-                            {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2), ($place->mobile_height * 2))} 2x'>
+                            {$banner->file_mobile->getPreviewWebPath($place->mobile_width)} 1x, 
+                            {$banner->file_mobile->getPreviewWebPath(($place->mobile_width * 2) )} 2x'>
                     <img 
-                        src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width, $place->desktop_height)}' 
+                        src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
                         alt='{$banner->title}'>
                 </picture>";
@@ -80,15 +87,16 @@ foreach ($banners as $banner) {
                     <source 
                         type='image/webp' 
                         srcset='
-                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width,$place->desktop_height,true)} 1x, 
-                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),($place->desktop_height * 2),true)} 2x'>              
+                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width,true)} 1x, 
+                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),true)} 2x'>              
                     <source 
                         type='{$banner->file_desktop->content_type}'
                         srcset='
-                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width, $place->desktop_height)} 1x, 
-                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),($place->desktop_height * 2))} 2x'>
+                            {$banner->file_desktop->getPreviewWebPath($place->desktop_width)} 1x, 
+                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),)} 2x'>
                     <img 
-                        src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width,$place->desktop_height)}' 
+                        src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
+                        src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 
                         alt='{$banner->title}'>
                 </picture>";
