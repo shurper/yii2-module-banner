@@ -24,8 +24,8 @@ class m190226_102147_add_archive_option extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{ads_banner}}', 'archive');
-        $this->dropTable('{{ads_popup}}', 'archive');
+        $this->dropColumn('{{ads_banner}}', 'archive');
+        $this->dropColumn('{{ads_popup}}', 'archive');
     }
 
 }

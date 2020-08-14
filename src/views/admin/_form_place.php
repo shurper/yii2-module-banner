@@ -5,11 +5,13 @@
  * Date: 19.06.2018
  * Time: 20:22
  *
- * @var $model \floor12\banner\models\AdsPlace
- * @var $this \yii\web\View
+ * @var $model AdsPlace
+ * @var $this View
  *
  */
 
+use floor12\banner\models\AdsPlace;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 

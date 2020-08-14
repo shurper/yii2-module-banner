@@ -100,6 +100,8 @@ class AdsPopup extends ActiveRecord
 
     /** Связь баннера с площадками
      * @return ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\base\InvalidConfigException
      */
     public function getPlaces(): ActiveQuery
     {

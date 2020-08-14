@@ -5,12 +5,13 @@
  * Date: 19.06.2018
  * Time: 13:13
  *
- * @var $this \yii\web\View
- * @var $model \floor12\banner\models\AdsPlaceFilter;
+ * @var $this View
+ * @var $model AdsPlaceFilter;
  */
 
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsPlace;
+use floor12\banner\models\AdsPlaceFilter;
 use floor12\banner\widgets\TabWidget;
 use floor12\editmodal\EditModalAsset;
 use floor12\editmodal\EditModalColumn;
@@ -19,6 +20,7 @@ use floor12\editmodal\IconHelper;
 use yii\bootstrap\BootstrapAsset;
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\Pjax;
 
 BootstrapAsset::register($this);

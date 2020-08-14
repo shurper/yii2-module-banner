@@ -24,6 +24,8 @@ class PopupWidget extends Widget
 
     /**
      * @return bool
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\base\InvalidConfigException
      */
     public function init(): bool
     {

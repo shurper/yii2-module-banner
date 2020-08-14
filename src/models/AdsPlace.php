@@ -69,7 +69,8 @@ class AdsPlace extends ActiveRecord
     }
 
     /** Связь площадки с баннерами
-     * @return ActiveQuery
+     * @return AdsBannerQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getBanners(): AdsBannerQuery
     {
@@ -82,7 +83,8 @@ class AdsPlace extends ActiveRecord
 
     /** Активные баннеры.
      *  Проверяем, активен ли баннер, есть если у него выставлены даты - сравниваем с текущей датой
-     * @return ActiveQuery
+     * @return AdsBannerQuery
+     * @throws \yii\base\InvalidConfigException
      */
     public function getBannersActive(): AdsBannerQuery
     {

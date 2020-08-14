@@ -5,9 +5,9 @@
  * Date: 20.06.2018
  * Time: 9:23
  *
- * @var $this \yii\web\View
- * @var $banners \floor12\banner\models\AdsBanner
- * @var $place \floor12\banner\models\AdsPlace
+ * @var $this View
+ * @var $banners AdsBanner
+ * @var $place AdsPlace
  * @var $id string
  * @var $targetBlank bool
  * @var $adaptiveBreakpoint integer
@@ -15,8 +15,10 @@
 
 use floor12\banner\assets\BannerAsset;
 use floor12\banner\models\AdsBanner;
+use floor12\banner\models\AdsPlace;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\View;
 
 BannerAsset::register($this);
 

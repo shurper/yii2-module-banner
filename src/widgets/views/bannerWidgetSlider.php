@@ -6,8 +6,8 @@
  * Time: 9:23
  *
  * @var $this View
- * @var $banner \floor12\banner\models\AdsBanner[]
- * @var $place \floor12\banner\models\AdsPlace
+ * @var $banners AdsBanner[]
+ * @var $place AdsPlace
  * @var $id string
  * @var $targetBlank bool
  * @var $adaptiveBreakpoint integer
@@ -15,7 +15,9 @@
 
 use floor12\banner\assets\SlickAsset;
 use floor12\banner\models\AdsBanner;
+use floor12\banner\models\AdsPlace;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 SlickAsset::register($this);
@@ -29,7 +31,7 @@ $jsCode = <<< JS
         accessibility: false,
         adaptiveHeight: true,
         autoplaySpeed: {$place->slider_time},
-    });
+    })
 
 
     
@@ -40,8 +42,7 @@ $this->registerJs($jsCode, View::POS_READY, 'floor12-banner-slider-' . $id);
 echo "<div id='{$id}'>";
 
 foreach ($banners as $banner) {
-
-    if ($banner->type == AdsBanner::TYPE_IMAGE)
+    if ($banner->type === AdsBanner::TYPE_IMAGE)
         if ($banner->file_mobile)
             $img = "<picture class='banner-widget'>
                     <source 

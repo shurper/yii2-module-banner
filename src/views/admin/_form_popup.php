@@ -5,16 +5,18 @@
  * Date: 19.06.2018
  * Time: 20:22
  *
- * @var $model \floor12\banner\models\AdsPlace
- * @var $this \yii\web\View
+ * @var $model AdsPopup
+ * @var $this View
  * @var $places array
  *
  */
 
+use floor12\banner\models\AdsPopup;
 use floor12\files\components\FileInputWidget;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
 $datePickerOptions = [

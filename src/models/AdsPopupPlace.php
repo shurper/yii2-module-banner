@@ -2,6 +2,10 @@
 
 namespace floor12\banner\models;
 
+use yii\base\InvalidConfigException;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
+
 /**
  * This is the model class for table "ads_popup_place".
  *
@@ -12,7 +16,7 @@ namespace floor12\banner\models;
  * @property AdsPopup[] $popups Сязанные баннеры
  * @property AdsPopup[] $popupsActive Активные связанные баннеры
  */
-class AdsPopupPlace extends \yii\db\ActiveRecord
+class AdsPopupPlace extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -46,24 +50,25 @@ class AdsPopupPlace extends \yii\db\ActiveRecord
         ];
     }
 
-    /** Связь площадки с баннерами
-     * @return ActiveQuery
-     */
-    public function getPopups(): AdsPopupQuery
-    {
-        return $this
-            ->hasMany(AdsPopup::class, ['id' => 'popup_id'])
-            ->viaTable('ads_popup_place_popup', ['place_id' => 'id']);
-    }
-
-
     /** Активные баннеры.
      *  Проверяем, активен ли баннер, есть если у него выставлены даты - сравниваем с текущей датой
-     * @return ActiveQuery
+     * @return AdsPopupQuery
+     * @throws InvalidConfigException
      */
     public function getPopupsActive(): AdsPopupQuery
     {
         return $this->getPopups()->orderBy('RAND()')->active();
+    }
+
+    /** Связь площадки с баннерами
+     * @return AdsPopupQuery|ActiveQuery
+     * @throws InvalidConfigException
+     */
+    public function getPopups()
+    {
+        return $this
+            ->hasMany(AdsPopup::class, ['id' => 'popup_id'])
+            ->viaTable('ads_popup_place_popup', ['place_id' => 'id']);
     }
 
 }

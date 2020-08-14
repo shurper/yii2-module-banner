@@ -10,6 +10,7 @@ use Yii;
 use yii\base\ErrorException;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use ZipArchive;
 
 /**
  * This is the model class for table "ads_banner".
@@ -81,6 +82,8 @@ class AdsBanner extends ActiveRecord
 
     /** Связь баннера с площадками
      * @return ActiveQuery
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\base\InvalidConfigException
      */
     public function getPlaces(): ActiveQuery
     {
@@ -133,7 +136,7 @@ class AdsBanner extends ActiveRecord
     }
 
     /** Этот метод мы добавляем исключительно чтобы иметь возможность делать жадную загрузку изображений
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getFile_desktop()
     {
@@ -143,7 +146,7 @@ class AdsBanner extends ActiveRecord
     }
 
     /** Этот метод мы добавляем исключительно чтобы иметь возможность делать жадную загрузку изображений
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getFile_mobile()
     {
@@ -220,6 +223,8 @@ class AdsBanner extends ActiveRecord
 
     /**
      * @return bool|string|void
+     * @throws ErrorException
+     * @throws ErrorException
      */
     public function getWebPath()
     {
@@ -237,7 +242,7 @@ class AdsBanner extends ActiveRecord
     protected function publish()
     {
         if (!file_exists($this->webrootPath)) {
-            $zip = new \ZipArchive;
+            $zip = new ZipArchive;
             if ($zip->open($this->file_desktop->rootPath) === TRUE) {
                 mkdir($this->webrootPath);
                 $zip->extractTo($this->webrootPath);

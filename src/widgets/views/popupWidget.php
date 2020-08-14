@@ -5,12 +5,14 @@
  * Date: 10.07.2018
  * Time: 22:01
  *
- * @var $this \yii\web\View
- * @var $model \floor12\banner\models\AdsPopup
+ * @var $this View
+ * @var $model AdsPopup
  */
 
 use floor12\banner\assets\BannerAsset;
+use floor12\banner\models\AdsPopup;
 use yii\helpers\Html;
+use yii\web\View;
 
 BannerAsset::register($this);
 

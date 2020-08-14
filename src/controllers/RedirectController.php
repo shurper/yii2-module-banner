@@ -12,6 +12,7 @@ use floor12\banner\models\AdsBanner;
 use floor12\banner\models\AdsPopup;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\Response;
 
 class RedirectController extends Controller
 {
@@ -22,7 +23,7 @@ class RedirectController extends Controller
      *  Если да, то увеличиваем счетчик кликов и запускаем редирект.
      *
      * @param $id
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException
      */
     public function actionRedirect($id)
@@ -46,7 +47,7 @@ class RedirectController extends Controller
      *  Если да, то увеличиваем счетчик кликов и запускаем редирект.
      *
      * @param $id
-     * @return \yii\web\Response
+     * @return Response
      * @throws NotFoundHttpException
      */
     public function actionPopup($id)
