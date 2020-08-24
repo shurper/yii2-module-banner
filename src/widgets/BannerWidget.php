@@ -29,7 +29,10 @@ class BannerWidget extends Widget
         if (Yii::$app->request->method == 'HEAD')
             return false;
 
-        $this->_place = AdsPlace::findOne($this->place_id);
+        $this->_place = AdsPlace::find()
+            ->where(['id'=>$this->place_id])
+            ->with('bannersActive')
+            ->one();
 
         // Если не найдена площадка - ничего не делаем
         if (!$this->_place)

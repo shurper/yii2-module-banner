@@ -2,7 +2,6 @@
 
 namespace floor12\banner\models;
 
-use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -68,19 +67,6 @@ class AdsPlace extends ActiveRecord
         ];
     }
 
-    /** Связь площадки с баннерами
-     * @return AdsBannerQuery
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function getBanners(): AdsBannerQuery
-    {
-        return $this
-            ->hasMany(AdsBanner::class, ['id' => 'banner_id'])
-            ->viaTable('ads_place_banner', ['place_id' => 'id'])
-            ->inverseOf('places');
-    }
-
-
     /** Активные баннеры.
      *  Проверяем, активен ли баннер, есть если у него выставлены даты - сравниваем с текущей датой
      * @return AdsBannerQuery
@@ -89,6 +75,18 @@ class AdsPlace extends ActiveRecord
     public function getBannersActive(): AdsBannerQuery
     {
         return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
+    }
+
+    /** Связь площадки с баннерами
+     * @return AdsBannerQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getBanners(): AdsBannerQuery
+    {
+        return $this
+            ->hasMany(AdsBanner::class, ['id' => 'place_id'])
+            ->viaTable('ads_place_banner', ['banner_id' => 'id'])
+            ->inverseOf('places');
     }
 
     /**
