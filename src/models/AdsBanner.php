@@ -2,12 +2,14 @@
 
 namespace floor12\banner\models;
 
+use floor12\banner\Module;
 use floor12\files\components\FileBehaviour;
 use floor12\files\models\File;
 use floor12\files\models\FileType;
 use voskobovich\linker\LinkerBehavior;
 use Yii;
 use yii\base\ErrorException;
+use yii\caching\TagDependency;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use ZipArchive;
@@ -45,14 +47,6 @@ class AdsBanner extends ActiveRecord
 
     /**
      * {@inheritdoc}
-     */
-    public static function tableName(): string
-    {
-        return 'ads_banner';
-    }
-
-    /**
-     * {@inheritdoc}
      * @return AdsBannerQuery the active query used by this AR class.
      */
     public static function find()
@@ -82,7 +76,6 @@ class AdsBanner extends ActiveRecord
 
     /** Связь баннера с площадками
      * @return ActiveQuery
-     * @throws \yii\base\InvalidConfigException
      * @throws \yii\base\InvalidConfigException
      */
     public function getPlaces(): ActiveQuery
@@ -190,14 +183,33 @@ class AdsBanner extends ActiveRecord
         parent::afterFind();
     }
 
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes)
+    {
+        TagDependency::invalidate(Yii::$app->cache, [Module::CACHE_TAG_BANNERS]);
+        parent::afterSave($insert, $changedAttributes);
+    }
+
     /** Увеличиваем счетчик просмотров
      *  Ради 2х строчек кода не буду выносить этот функционал в отдельный класс, хотя может в будущем.
      * @return bool
      */
     public function increaseViews(): bool
     {
-        $this->views++;
-        return $this->save(false, ['views']);
+        $sql = "UPDATE {$this::tableName()} SET views=views+1 WHERE id=$this->id;";
+        Yii::$app->db->createCommand($sql)->execute();
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName(): string
+    {
+        return 'ads_banner';
     }
 
     /** Увеличиваем счетчик кликов
@@ -205,8 +217,9 @@ class AdsBanner extends ActiveRecord
      */
     public function increaseClicks(): bool
     {
-        $this->clicks++;
-        return $this->save(false, ['clicks']);
+        $sql = "UPDATE {$this::tableName()} SET clicks=clicks+1 WHERE id=$this->id;";
+        Yii::$app->db->createCommand($sql)->execute();
+        return true;
     }
 
     /** Определение типа баннера

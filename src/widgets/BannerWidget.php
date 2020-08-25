@@ -9,50 +9,63 @@
 namespace floor12\banner\widgets;
 
 use floor12\banner\models\AdsPlace;
+use floor12\banner\Module;
 use Yii;
 use yii\base\Widget;
+use yii\caching\TagDependency;
 
 class BannerWidget extends Widget
 {
     public $place_id;
+    public $_place_id;
     public $targetBlank = true;
-    private $_place;
-    private $_banners;
-    private $_view;
+    private $place;
+    private $banners;
+    private $view;
+    private $bannersActive;
 
     /**
      * @return bool
      */
     public function init(): bool
     {
+        if (empty($this->place_id))
+            $this->place = $this->_place_id;
+
         // Некоторые браузеры любят посылать HEAD запросы, что ошибочно увеличивает счетчик просмотров
         if (Yii::$app->request->method == 'HEAD')
             return false;
 
-        $this->_place = AdsPlace::findOne($this->place_id);
+        $cacheKey = ['banner', $this->place_id];
 
-        // Если не найдена площадка - ничего не делаем
-        if (!$this->_place)
-            return false;
+        list($this->place, $this->bannersActive) = Yii::$app->cache->getOrSet($cacheKey, function () {
+            $place = AdsPlace::findOne($this->place_id);
+            if (!$place)
+                return false;
+            return [
+                $place,
+                $place->bannersActive ?? []
+            ];
+        }, 60 * 60, new TagDependency(['tags' => [Module::CACHE_TAG_BANNERS]]));
+
 
         // Если не найдены активные баннеры -  тоже ничего не делаем
-        if (!$this->_place->bannersActive)
+        if (empty($this->bannersActive))
             return false;
 
         // Если площадка в режиме слайдера - выбираем все баннеры. В противном случае - рандомно выбираем 1 баннер из актиыных
-        if ($this->_place->slider == AdsPlace::SLIDER_ENABLED) {
-            $this->_banners = $this->_place->bannersActive;
-            foreach ($this->_banners as $banner)
+        if ($this->place->slider == AdsPlace::SLIDER_ENABLED) {
+            $this->banners = $this->place->bannersActive;
+            foreach ($this->banners as $banner)
                 $banner->increaseViews();
-            $this->_view = 'bannerWidgetSlider';
+            $this->view = 'bannerWidgetSlider';
         } else {
-            $this->_banners = $this->_place->bannersActive[rand(0, sizeof($this->_place->bannersActive) - 1)];
-            $this->_banners->increaseViews();
-            $this->_view = 'bannerWidgetSingle';
+            $this->banners = $this->bannersActive[rand(0, sizeof($this->bannersActive) - 1)];
+            $this->banners->increaseViews();
+            $this->view = 'bannerWidgetSingle';
         }
 
-        // Если не найдены баннеры - ничего не делаем
-        if (!$this->_banners)
+        if (!$this->banners)
             return false;
 
         return true;
@@ -63,11 +76,11 @@ class BannerWidget extends Widget
      */
     public function run(): string
     {
-        if (!$this->_banners)
+        if (!$this->banners)
             return "";
-        return $this->render($this->_view, [
-            'banners' => $this->_banners,
-            'place' => $this->_place,
+        return $this->render($this->view, [
+            'banners' => $this->banners,
+            'place' => $this->place,
             'id' => "banner" . rand(99999, 9999999),
             'targetBlank' => $this->targetBlank,
             'adaptiveBreakpoint' => Yii::$app->getModule('banner')->adaptiveBreakpoint

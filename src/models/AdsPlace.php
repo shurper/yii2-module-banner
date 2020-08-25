@@ -2,7 +2,9 @@
 
 namespace floor12\banner\models;
 
-use yii\db\ActiveQuery;
+use floor12\banner\Module;
+use Yii;
+use yii\caching\TagDependency;
 use yii\db\ActiveRecord;
 
 /**
@@ -68,6 +70,16 @@ class AdsPlace extends ActiveRecord
         ];
     }
 
+    /** Активные баннеры.
+     *  Проверяем, активен ли баннер, есть если у него выставлены даты - сравниваем с текущей датой
+     * @return AdsBannerQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getBannersActive(): AdsBannerQuery
+    {
+        return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
+    }
+
     /** Связь площадки с баннерами
      * @return AdsBannerQuery
      * @throws \yii\base\InvalidConfigException
@@ -80,15 +92,14 @@ class AdsPlace extends ActiveRecord
             ->inverseOf('places');
     }
 
-
-    /** Активные баннеры.
-     *  Проверяем, активен ли баннер, есть если у него выставлены даты - сравниваем с текущей датой
-     * @return AdsBannerQuery
-     * @throws \yii\base\InvalidConfigException
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
      */
-    public function getBannersActive(): AdsBannerQuery
+    public function afterSave($insert, $changedAttributes)
     {
-        return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
+        TagDependency::invalidate(Yii::$app->cache, [Module::CACHE_TAG_BANNERS]);
+        parent::afterSave($insert, $changedAttributes);
     }
 
     /**
