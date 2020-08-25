@@ -12,7 +12,7 @@ class Module extends \yii\base\Module
 {
     const CACHE_TAG_BANNERS = 'banners_cache';
     const CACHE_TAG_POPUPS = 'popaup_cache';
-    /**
+    /** 
      * @inheritdoc
      */
     public $controllerNamespace = 'floor12\banner\controllers';

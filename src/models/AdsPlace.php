@@ -2,6 +2,7 @@
 
 namespace floor12\banner\models;
 
+
 use floor12\banner\Module;
 use Yii;
 use yii\caching\TagDependency;
@@ -75,21 +76,10 @@ class AdsPlace extends ActiveRecord
      * @return AdsBannerQuery
      * @throws \yii\base\InvalidConfigException
      */
+
     public function getBannersActive(): AdsBannerQuery
     {
         return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
-    }
-
-    /** Связь площадки с баннерами
-     * @return AdsBannerQuery
-     * @throws \yii\base\InvalidConfigException
-     */
-    public function getBanners(): AdsBannerQuery
-    {
-        return $this
-            ->hasMany(AdsBanner::class, ['id' => 'banner_id'])
-            ->viaTable('ads_place_banner', ['place_id' => 'id'])
-            ->inverseOf('places');
     }
 
     /**
@@ -100,6 +90,19 @@ class AdsPlace extends ActiveRecord
     {
         TagDependency::invalidate(Yii::$app->cache, [Module::CACHE_TAG_BANNERS]);
         parent::afterSave($insert, $changedAttributes);
+
+    }
+
+    /** Связь площадки с баннерами
+     * @return AdsBannerQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function getBanners(): AdsBannerQuery
+    {
+        return $this
+            ->hasMany(AdsBanner::class, ['id' => 'place_id'])
+            ->viaTable('ads_place_banner', ['banner_id' => 'id'])
+            ->inverseOf('places');
     }
 
     /**
