@@ -8,6 +8,7 @@
 
 namespace floor12\banner\widgets;
 
+use floor12\banner\models\AdsBanner;
 use floor12\banner\models\AdsPlace;
 use floor12\banner\Module;
 use Yii;
@@ -42,9 +43,14 @@ class BannerWidget extends Widget
             $place = AdsPlace::findOne($this->place_id);
             if (!$place)
                 return false;
+            $bannersActive = AdsBanner::find()
+                ->leftJoin('ads_place_banner', 'ads_place_banner.banner_id=ads_banner.id')
+                ->active()
+                ->andWhere(['place_id' => $place->id])
+                ->all();
             return [
                 $place,
-                $place->bannersActive ?? []
+                $bannersActive ?? []
             ];
         }, 60 * 60, new TagDependency(['tags' => [Module::CACHE_TAG_BANNERS]]));
 

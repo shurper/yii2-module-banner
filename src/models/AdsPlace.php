@@ -71,17 +71,6 @@ class AdsPlace extends ActiveRecord
         ];
     }
 
-    /** Активные баннеры.
-     *  Проверяем, активен ли баннер, есть если у него выставлены даты - сравниваем с текущей датой
-     * @return AdsBannerQuery
-     * @throws \yii\base\InvalidConfigException
-     */
-
-    public function getBannersActive(): AdsBannerQuery
-    {
-        return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
-    }
-
     /**
      * @param bool $insert
      * @param array $changedAttributes
@@ -100,7 +89,7 @@ class AdsPlace extends ActiveRecord
     public function getBanners(): AdsBannerQuery
     {
         return $this
-            ->hasMany(AdsBanner::class, ['id' => 'place_id'])
+            ->hasMany(AdsBanner::class, ['place_id' => 'id'])
             ->viaTable('ads_place_banner', ['banner_id' => 'id'])
             ->inverseOf('places');
     }
