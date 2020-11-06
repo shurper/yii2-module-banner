@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 13:13
  *
@@ -9,14 +9,14 @@
  * @var $model AdsPlaceFilter;
  */
 
-use floor12\banner\assets\BannerAsset;
-use floor12\banner\models\AdsPlace;
-use floor12\banner\models\AdsPlaceFilter;
-use floor12\banner\widgets\TabWidget;
-use floor12\editmodal\EditModalAsset;
-use floor12\editmodal\EditModalColumn;
-use floor12\editmodal\EditModalHelper;
-use floor12\editmodal\IconHelper;
+use shurper\banner\assets\BannerAsset;
+use shurper\banner\models\AdsPlace;
+use shurper\banner\models\AdsPlaceFilter;
+use shurper\banner\widgets\TabWidget;
+use shurper\editmodal\EditModalAsset;
+use shurper\editmodal\EditModalColumn;
+use shurper\editmodal\EditModalHelper;
+use shurper\editmodal\IconHelper;
 use yii\bootstrap\BootstrapAsset;
 use yii\grid\GridView;
 use yii\helpers\Html;

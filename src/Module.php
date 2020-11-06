@@ -1,6 +1,6 @@
 <?php
 
-namespace floor12\banner;
+namespace shurper\banner;
 
 /**
  * Banner module definition class
@@ -15,7 +15,7 @@ class Module extends \yii\base\Module
     /** 
      * @inheritdoc
      */
-    public $controllerNamespace = 'floor12\banner\controllers';
+    public $controllerNamespace = 'shurper\banner\controllers';
 
     /**
      * @var string Layout alias to use it admin controller

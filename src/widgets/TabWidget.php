@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 13.01.2017
  * Time: 22:12
  */
 
-namespace floor12\banner\widgets;
+namespace shurper\banner\widgets;
 
 use yii\base\Widget;
 use yii\helpers\Html;

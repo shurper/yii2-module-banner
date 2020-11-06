@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 13:13
  *
@@ -9,19 +9,19 @@
  * @var $model AdsBannerFilter;
  */
 
-use floor12\banner\assets\BannerAsset;
-use floor12\banner\models\AdsBannerFilter;
-use floor12\banner\models\AdsPopup;
-use floor12\banner\widgets\TabWidget;
-use floor12\editmodal\EditModalHelper;
-use floor12\editmodal\IconHelper;
+use shurper\banner\assets\BannerAsset;
+use shurper\banner\models\AdsBannerFilter;
+use shurper\banner\models\AdsPopup;
+use shurper\banner\widgets\TabWidget;
+use shurper\editmodal\EditModalHelper;
+use shurper\editmodal\IconHelper;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use yii\bootstrap\BootstrapAsset;
-use floor12\editmodal\EditModalAsset;
+use shurper\editmodal\EditModalAsset;
 
 BootstrapAsset::register($this);
 BannerAsset::register($this);

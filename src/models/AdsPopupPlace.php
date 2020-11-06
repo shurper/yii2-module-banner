@@ -1,6 +1,6 @@
 <?php
 
-namespace floor12\banner\models;
+namespace shurper\banner\models;
 
 use yii\base\InvalidConfigException;
 use yii\db\ActiveQuery;

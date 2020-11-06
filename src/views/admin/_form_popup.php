@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 20:22
  *
@@ -11,8 +11,8 @@
  *
  */
 
-use floor12\banner\models\AdsPopup;
-use floor12\files\components\FileInputWidget;
+use shurper\banner\models\AdsPopup;
+use shurper\files\components\FileInputWidget;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use yii\helpers\Html;

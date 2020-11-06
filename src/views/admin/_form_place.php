@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 20:22
  *
@@ -10,7 +10,7 @@
  *
  */
 
-use floor12\banner\models\AdsPlace;
+use shurper\banner\models\AdsPlace;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;

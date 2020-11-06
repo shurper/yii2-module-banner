@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 13:16
  */
 
-namespace floor12\banner\models;
+namespace shurper\banner\models;
 
 use \yii\base\Model;
 use yii\data\ActiveDataProvider;

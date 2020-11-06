@@ -1,9 +1,9 @@
 <?php
 
-namespace floor12\banner\models;
+namespace shurper\banner\models;
 
-use floor12\files\components\FileBehaviour;
-use floor12\files\models\File;
+use shurper\files\components\FileBehaviour;
+use shurper\files\models\File;
 use voskobovich\linker\LinkerBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;

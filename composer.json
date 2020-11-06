@@ -1,9 +1,9 @@
 {
-  "name": "floor12/yii2-module-banner",
+  "name": "shurper/yii2-module-banner",
   "description": "Advanced yii2 module for banners management.",
   "minimum-stability": "stable",
   "keywords": [
-    "floor12",
+    "shurper",
     "yii2 module",
     "yii",
     "yii2",
@@ -14,16 +14,16 @@
   "license": "MIT",
   "authors": [
     {
-      "name": "floor12",
-      "email": "floor12@protonmail.com",
+      "name": "shurper",
+      "email": "shurper@protonmail.com",
       "role": "Developer"
     }
   ],
   "require": {
     "php": ">=7.0.0",
     "yiisoft/yii2": "~2.0.13",
-    "floor12/yii2-module-files": "*",
-    "floor12/yii2-editmodal": "*",
+    "shurper/yii2-module-files": "*",
+    "shurper/yii2-editmodal": "*",
     "kartik-v/yii2-widget-select2": "@dev",
     "kartik-v/yii2-widget-datepicker": "@dev",
     "voskobovich/yii2-linker-behavior": "@dev",
@@ -31,12 +31,12 @@
   },
   "autoload": {
     "psr-4": {
-      "floor12\\banner\\": "src"
+      "shurper\\banner\\": "src"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "floor12\\files\\tests\\": "tests"
+      "shurper\\files\\tests\\": "tests"
     }
   },
   "repositories": [
@@ -46,11 +46,11 @@
     },
     {
       "type": "git",
-      "url": "https://github.com/floor12/yii2-editmodal"
+      "url": "https://github.com/shurper/yii2-editmodal"
     },
     {
       "type": "git",
-      "url": "https://github.com/floor12/yii2-module-files"
+      "url": "https://github.com/shurper/yii2-module-files"
     }
   ]
 }

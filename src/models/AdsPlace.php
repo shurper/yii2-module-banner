@@ -1,9 +1,9 @@
 <?php
 
-namespace floor12\banner\models;
+namespace shurper\banner\models;
 
 
-use floor12\banner\Module;
+use shurper\banner\Module;
 use Yii;
 use yii\caching\TagDependency;
 use yii\db\ActiveRecord;

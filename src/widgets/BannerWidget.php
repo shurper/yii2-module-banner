@@ -1,16 +1,16 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 12:13
  */
 
-namespace floor12\banner\widgets;
+namespace shurper\banner\widgets;
 
-use floor12\banner\models\AdsBanner;
-use floor12\banner\models\AdsPlace;
-use floor12\banner\Module;
+use shurper\banner\models\AdsBanner;
+use shurper\banner\models\AdsPlace;
+use shurper\banner\Module;
 use Yii;
 use yii\base\Widget;
 use yii\caching\TagDependency;

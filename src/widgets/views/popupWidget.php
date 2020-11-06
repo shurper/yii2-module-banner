@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 10.07.2018
  * Time: 22:01
  *
@@ -9,8 +9,8 @@
  * @var $model AdsPopup
  */
 
-use floor12\banner\assets\BannerAsset;
-use floor12\banner\models\AdsPopup;
+use shurper\banner\assets\BannerAsset;
+use shurper\banner\models\AdsPopup;
 use yii\helpers\Html;
 use yii\web\View;
 

@@ -1,15 +1,15 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 20.06.2018
  * Time: 10:10
  */
 
-namespace floor12\banner\controllers;
+namespace shurper\banner\controllers;
 
-use floor12\banner\models\AdsBanner;
-use floor12\banner\models\AdsPopup;
+use shurper\banner\models\AdsBanner;
+use shurper\banner\models\AdsPopup;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;

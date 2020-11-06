@@ -1,18 +1,18 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 18:07
  */
 
-namespace floor12\banner\assets;
+namespace shurper\banner\assets;
 
 use yii\web\AssetBundle;
 
 class BannerAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/floor12/yii2-module-banner/src/assets';
+    public $sourcePath = '@vendor/shurper/yii2-module-banner/src/assets';
 
     public $css = [
         'banner.css'

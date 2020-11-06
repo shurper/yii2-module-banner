@@ -1,23 +1,23 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 13:13
  */
 
-namespace floor12\banner\controllers;
+namespace shurper\banner\controllers;
 
-use floor12\banner\models\AdsBanner;
-use floor12\banner\models\AdsBannerFilter;
-use floor12\banner\models\AdsPlace;
-use floor12\banner\models\AdsPlaceFilter;
-use floor12\banner\models\AdsPopPlaceFilter;
-use floor12\banner\models\AdsPopup;
-use floor12\banner\models\AdsPopupFilter;
-use floor12\banner\models\AdsPopupPlace;
-use floor12\editmodal\DeleteAction;
-use floor12\editmodal\EditModalAction;
+use shurper\banner\models\AdsBanner;
+use shurper\banner\models\AdsBannerFilter;
+use shurper\banner\models\AdsPlace;
+use shurper\banner\models\AdsPlaceFilter;
+use shurper\banner\models\AdsPopPlaceFilter;
+use shurper\banner\models\AdsPopup;
+use shurper\banner\models\AdsPopupFilter;
+use shurper\banner\models\AdsPopupPlace;
+use shurper\editmodal\DeleteAction;
+use shurper\editmodal\EditModalAction;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -25,7 +25,7 @@ use yii\web\Controller;
 
 /** Контроллер для управления баннерами
  * Class AdminController
- * @package floor12\banner\controllers
+ * @package shurper\banner\controllers
  */
 class AdminController extends Controller
 {
@@ -106,7 +106,7 @@ class AdminController extends Controller
     }
 
     /** Подключаем необходимые экшены для редактирования и удаления площадок и баннеров
-     *  Для обеспечения этого функционала используем пакет floor12\editmodal для редактирования в модальном окне
+     *  Для обеспечения этого функционала используем пакет shurper\editmodal для редактирования в модальном окне
      * @return array
      */
     public function actions(): array

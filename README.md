@@ -1,10 +1,10 @@
 # yii2-module-banner
 
-[![Latest Stable Version](https://poser.pugx.org/floor12/yii2-module-banner/v/stable)](https://packagist.org/packages/floor12/yii2-module-banner)
-[![Latest Unstable Version](https://poser.pugx.org/floor12/yii2-module-banner/v/unstable)](https://packagist.org/packages/floor12/yii2-module-banner)
-[![Total Downloads](https://poser.pugx.org/floor12/yii2-module-banner/downloads)](https://packagist.org/packages/floor12/yii2-module-banner)
-[![License](https://poser.pugx.org/floor12/yii2-module-banner/license)](https://packagist.org/packages/floor12/yii2-module-banner)
-
+[![Latest Stable Version](https://poser.pugx.org/shurper/yii2-module-banner/v/stable)](https://packagist.org/packages/shurper/yii2-module-banner)
+[![Latest Unstable Version](https://poser.pugx.org/shurper/yii2-module-banner/v/unstable)](https://packagist.org/packages/shurper/yii2-module-banner)
+[![Total Downloads](https://poser.pugx.org/shurper/yii2-module-banner/downloads)](https://packagist.org/packages/shurper/yii2-module-banner)
+[![License](https://poser.pugx.org/shurper/yii2-module-banner/license)](https://packagist.org/packages/shurper/yii2-module-banner)
+ВЛАДЕЛЕЦ ДАННОГО РЕПОЗИТОРИЯ НЕ ЯВЛЯЕТСЯ АВТОРОМ ТЕКСТА, ПРЕДСТАВЛЕННОГО НИЖЕ:
 Модуль для размещения и управления баннерами и поп-ап на сайте.
 
  
@@ -22,11 +22,11 @@
 
 Для добавления модуля выполняем команду
 ```bash
-$ composer require floor12/yii2-module-banner
+$ composer require shurper/yii2-module-banner
 ```
 или добавляем в секцию "required" вашего файла composer.json следую строку:
 ```json
-"floor12/yii2-module-banner": "dev-master"
+"shurper/yii2-module-banner": "dev-master"
 ```
 
 Внимание, для работы модуля необходима библиотека [PHP-GD](https://www.php.net/manual/ru/book.image.php
@@ -36,7 +36,7 @@ $ composer require floor12/yii2-module-banner
 
 ### Выполнение миграций
 
-Для работы модуль использует модуль для работы с файлами [floor12/yii2-module-files](https://github.com/floor12/yii2-module-files
+Для работы модуль использует модуль для работы с файлами [shurper/yii2-module-files](https://github.com/shurper/yii2-module-files
 ), поэтому необходимо применить миграции сразу обоих модулей. Для автоматического применения миграций из 
 установленных в проект модулей рекомендую использовать дополнительный компонент, 
 например [fishvision/yii2-migrate](https://github.com/fishvision/yii2-migrate).
@@ -44,8 +44,8 @@ $ composer require floor12/yii2-module-banner
 Выполняем миграции:
 
 ```bash
-$ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-banner/src/migrations
-$ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-files/src/migrations
+$ ./yii migrate --migrationPath=@vendor/shurper/yii2-module-banner/src/migrations
+$ ./yii migrate --migrationPath=@vendor/shurper/yii2-module-files/src/migrations
 ```
 
 ### Регистрация и конфигурирование модуля
@@ -57,17 +57,17 @@ $ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-files/src/migrations
 'modules' => [
     'modules' => [
         'banner' => [
-            'class' => 'floor12\banner\Module',
+            'class' => 'shurper\banner\Module',
         ],
         'files' => [
-            'class' => 'floor12\files\Module',
+            'class' => 'shurper\files\Module',
         ],
     ],
     ]
     ...
 ```
 
-При этом `floor12\banner\Module` имеет дополнительный параметры для конфигурации:
+При этом `shurper\banner\Module` имеет дополнительный параметры для конфигурации:
 
 1. `administratorRole
 ` - роль пользователей, которым доступно управление, по умолчанию содержит `@` предоставляя доступ всем авторизованным пользователям;
@@ -79,8 +79,8 @@ $ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-files/src/migrations
 
 Последние 2 параметра необходисы только при использовании Rich HTML баннеров, загрузка которых должна происходить в виде zip архива.
 
-Необходимый для работы модуль файлов [floor12/yii2-module-files](https://github.com/floor12/yii2-module-files) имеет ряд параметров, 
-описанных [в его документации](https://github.com/floor12/yii2-module-files/blob/master/README_RU.md).
+Необходимый для работы модуль файлов [shurper/yii2-module-files](https://github.com/shurper/yii2-module-files) имеет ряд параметров, 
+описанных [в его документации](https://github.com/shurper/yii2-module-files/blob/master/README_RU.md).
 
 Использование
 -----
@@ -90,7 +90,7 @@ $ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-files/src/migrations
 
 
 ```php  
-<?= floor12\banner\widgets\BannerWidget::widget(['place_id' => 1]) ?>
+<?= shurper\banner\widgets\BannerWidget::widget(['place_id' => 1]) ?>
 ```
 
 Если площадка не найдена, или в ней отсутствуют связанные баннеры, то виджет ничего не отобразит.

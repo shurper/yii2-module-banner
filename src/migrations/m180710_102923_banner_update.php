@@ -1,7 +1,7 @@
 <?php
 
 use yii\db\Migration;
-use floor12\banner\models\AdsPlace;
+use shurper\banner\models\AdsPlace;
 
 /**
  * Class m180710_102923_banner_update

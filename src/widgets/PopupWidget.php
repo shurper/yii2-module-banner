@@ -1,14 +1,14 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: floor12
+ * User: shurper
  * Date: 19.06.2018
  * Time: 12:13
  */
 
-namespace floor12\banner\widgets;
+namespace shurper\banner\widgets;
 
-use floor12\banner\models\AdsPopupPlace;
+use shurper\banner\models\AdsPopupPlace;
 use Yii;
 use yii\base\Widget;
 use yii\web\Cookie;
