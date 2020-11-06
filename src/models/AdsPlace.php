@@ -94,6 +94,16 @@ class AdsPlace extends ActiveRecord
             ->inverseOf('places');
     }
 
+    /** Активные баннеры.
+     *  Проверяем, активен ли баннер, есть если у него выставлены даты - сравниваем с текущей датой
+     * @return AdsBannerQuery
+     * @throws \yii\base\InvalidConfigException
+     */
+
+    public function getBannersActive(): AdsBannerQuery
+    {
+        return $this->getBanners()->with('file_desktop', 'file_mobile')->orderBy('weight DESC, id')->active();
+    }
     /**
      * {@inheritdoc}
      */
