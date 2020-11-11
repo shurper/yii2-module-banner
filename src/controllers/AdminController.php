@@ -61,7 +61,7 @@ class AdminController extends Controller
         $this->layout = Yii::$app->getModule('banner')->adminLayout;
     }
 
-    public function beforeAction()
+    public function beforeAction($action)
     {
         if(!Yii::$app->user->identity->isAdmin()){
             return $this->goHome();
