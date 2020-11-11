@@ -60,7 +60,7 @@ $ ./yii migrate --migrationPath=@vendor/shurper/yii2-module-files/src/migrations
             'class' => 'shurper\banner\Module',
         ],
         'files' => [
-            'class' => 'shurper\files\Module',
+            'class' => 'floor12\files\Module',
         ],
     ],
     ]

@@ -13,15 +13,15 @@ use shurper\banner\assets\BannerAsset;
 use shurper\banner\models\AdsBannerFilter;
 use shurper\banner\models\AdsPopup;
 use shurper\banner\widgets\TabWidget;
-use shurper\editmodal\EditModalHelper;
-use shurper\editmodal\IconHelper;
+use floor12\editmodal\EditModalHelper;
+use floor12\editmodal\IconHelper;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 use yii\bootstrap\BootstrapAsset;
-use shurper\editmodal\EditModalAsset;
+use floor12\editmodal\EditModalAsset;
 
 BootstrapAsset::register($this);
 BannerAsset::register($this);

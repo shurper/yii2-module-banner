@@ -12,7 +12,7 @@
  */
 
 use shurper\banner\models\AdsPopup;
-use shurper\files\components\FileInputWidget;
+use floor12\files\components\FileInputWidget;
 use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use yii\helpers\Html;

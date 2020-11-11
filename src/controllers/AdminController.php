@@ -16,8 +16,8 @@ use shurper\banner\models\AdsPopPlaceFilter;
 use shurper\banner\models\AdsPopup;
 use shurper\banner\models\AdsPopupFilter;
 use shurper\banner\models\AdsPopupPlace;
-use shurper\editmodal\DeleteAction;
-use shurper\editmodal\EditModalAction;
+use floor12\editmodal\DeleteAction;
+use floor12\editmodal\EditModalAction;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -112,7 +112,7 @@ class AdminController extends Controller
     }
 
     /** Подключаем необходимые экшены для редактирования и удаления площадок и баннеров
-     *  Для обеспечения этого функционала используем пакет shurper\editmodal для редактирования в модальном окне
+     *  Для обеспечения этого функционала используем пакет floor12\editmodal для редактирования в модальном окне
      * @return array
      */
     public function actions(): array

@@ -3,9 +3,9 @@
 namespace shurper\banner\models;
 
 use shurper\banner\Module;
-use shurper\files\components\FileBehaviour;
-use shurper\files\models\File;
-use shurper\files\models\FileType;
+use floor12\files\components\FileBehaviour;
+use floor12\files\models\File;
+use floor12\files\models\FileType;
 use voskobovich\linker\LinkerBehavior;
 use Yii;
 use yii\base\ErrorException;
