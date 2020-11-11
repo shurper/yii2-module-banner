@@ -58,6 +58,7 @@ class AdminController extends Controller
      */
     public function init()
     {
+        parent::init();
         $this->layout = Yii::$app->getModule('banner')->adminLayout;
     }
 
@@ -66,6 +67,7 @@ class AdminController extends Controller
         if(!Yii::$app->user->identity->isAdmin()){
             return $this->goHome();
         }
+        return true;
     }
     /** Страница управления баннерами
      * @return string
