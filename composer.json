@@ -49,7 +49,7 @@
       "url": "https://github.com/floor12/yii2-editmodal"
     },
     {
-      "type": "git",
+      "type": "vcs",
       "url": "https://github.com/shurper/yii2-module-files"
     }
   ]
