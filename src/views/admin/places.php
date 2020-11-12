@@ -29,7 +29,7 @@ EditModalAsset::register($this);
 
 $this->title = 'Баннерные площадки';
 
-echo Html::tag('h1', 'Баннеры');
+//echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 

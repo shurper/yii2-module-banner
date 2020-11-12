@@ -70,7 +70,7 @@ foreach ($banners as $banner) {
                         media='(min-width: {$adaptiveBreakpoint}px)' 
                         srcset='
                             {$banner->file_desktop->getPreviewWebPath($place->desktop_width)} 1x, 
-                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2), )} 2x'>
+                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2) )} 2x'>
                     <source 
                         type='{$banner->file_desktop->content_type}' 
                         media='(max-width: {$adaptiveBreakpoint}px)' 
@@ -93,7 +93,7 @@ foreach ($banners as $banner) {
                         type='{$banner->file_desktop->content_type}'
                         srcset='
                             {$banner->file_desktop->getPreviewWebPath($place->desktop_width)} 1x, 
-                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2),)} 2x'>
+                            {$banner->file_desktop->getPreviewWebPath(($place->desktop_width * 2))} 2x'>
                     <img 
                         src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         src='{$banner->file_desktop->getPreviewWebPath($place->desktop_width)}' 

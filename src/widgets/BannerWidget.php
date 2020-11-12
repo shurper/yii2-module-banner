@@ -52,7 +52,7 @@ class BannerWidget extends Widget
                 $place,
                 $bannersActive ?? []
             ];
-        }, 60 * 60, new TagDependency(['tags' => [Module::CACHE_TAG_BANNERS]]));
+        }, 60 * 1, new TagDependency(['tags' => [Module::CACHE_TAG_BANNERS]]));
 
 
         // Если не найдены активные баннеры -  тоже ничего не делаем

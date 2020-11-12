@@ -64,9 +64,16 @@ class AdminController extends Controller
 
     public function beforeAction($action)
     {
+        if(Yii::$app->user->isGuest){
+            return $this->goHome();
+        }
         if(!Yii::$app->user->identity->isAdmin()){
             return $this->goHome();
         }
+        if(isset(Yii::$app->params['isBackend'])&&!Yii::$app->params['isBackend']){
+            return $this->goHome();
+        }
+
         return true;
     }
     /** Страница управления баннерами

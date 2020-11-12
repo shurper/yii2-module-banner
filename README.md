@@ -4,7 +4,10 @@
 [![Latest Unstable Version](https://poser.pugx.org/shurper/yii2-module-banner/v/unstable)](https://packagist.org/packages/shurper/yii2-module-banner)
 [![Total Downloads](https://poser.pugx.org/shurper/yii2-module-banner/downloads)](https://packagist.org/packages/shurper/yii2-module-banner)
 [![License](https://poser.pugx.org/shurper/yii2-module-banner/license)](https://packagist.org/packages/shurper/yii2-module-banner)
-ВЛАДЕЛЕЦ ДАННОГО РЕПОЗИТОРИЯ НЕ ЯВЛЯЕТСЯ АВТОРОМ ТЕКСТА, ПРЕДСТАВЛЕННОГО НИЖЕ:
+<br>Внимание! Вместо этого расширения используйте floor12/yii2-module-banner <br>
+ВЛАДЕЛЕЦ ДАННОГО РЕПОЗИТОРИЯ НЕ ЯВЛЯЕТСЯ АВТОРОМ ТЕКСТА, ПРЕДСТАВЛЕННОГО НИЖЕ:<br>
+
+
 Модуль для размещения и управления баннерами и поп-ап на сайте.
 
  
@@ -36,7 +39,7 @@ $ composer require shurper/yii2-module-banner
 
 ### Выполнение миграций
 
-Для работы модуль использует модуль для работы с файлами [shurper/yii2-module-files](https://github.com/shurper/yii2-module-files
+Для работы модуль использует модуль для работы с файлами [floor12/yii2-module-files](https://github.com/floor12/yii2-module-files
 ), поэтому необходимо применить миграции сразу обоих модулей. Для автоматического применения миграций из 
 установленных в проект модулей рекомендую использовать дополнительный компонент, 
 например [fishvision/yii2-migrate](https://github.com/fishvision/yii2-migrate).
@@ -45,7 +48,7 @@ $ composer require shurper/yii2-module-banner
 
 ```bash
 $ ./yii migrate --migrationPath=@vendor/shurper/yii2-module-banner/src/migrations
-$ ./yii migrate --migrationPath=@vendor/shurper/yii2-module-files/src/migrations
+$ ./yii migrate --migrationPath=@vendor/floor12/yii2-module-files/src/migrations
 ```
 
 ### Регистрация и конфигурирование модуля

@@ -36,8 +36,9 @@ $this->registerJs("updateAdsPlaceForm()");
             <?= $form->field($model, 'title') ?>
         </div>
         <div class="col-md-3">
+            <br><br>
             <?= $form->field($model, 'status')->checkbox() ?>
-            <?= $form->field($model, 'slider')->checkbox() ?>
+            <?= null//$form->field($model, 'slider')->checkbox() ?>
         </div>
     </div>
 

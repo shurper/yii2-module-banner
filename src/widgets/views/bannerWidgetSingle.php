@@ -48,7 +48,7 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         media='(min-width: {$adaptiveBreakpoint}px)' 
                         srcset='
                             {$banners->file_desktop->getPreviewWebPath($place->desktop_width)} 1x, 
-                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2), )} 2x'>
+                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2) )} 2x'>
                     <source 
                         type='{$banners->file_desktop->content_type}' 
                         media='(max-width: {$adaptiveBreakpoint}px)' 
@@ -71,7 +71,7 @@ if ($banners->type == AdsBanner::TYPE_IMAGE
                         type='{$banners->file_desktop->content_type}'
                         srcset='
                             {$banners->file_desktop->getPreviewWebPath($place->desktop_width)} 1x, 
-                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2),)} 2x'>
+                            {$banners->file_desktop->getPreviewWebPath(($place->desktop_width * 2))} 2x'>
                     <img 
                         src='{$banners->file_desktop->getPreviewWebPath($place->desktop_width)}' 
                         class='img-responsive' 

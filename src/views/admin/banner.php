@@ -31,7 +31,7 @@ EditModalAsset::register($this);
 
 $this->title = 'Баннеры';
 
-echo Html::tag('h1', 'Баннеры');
+//echo Html::tag('h1', 'Баннеры');
 
 echo TabWidget::widget();
 

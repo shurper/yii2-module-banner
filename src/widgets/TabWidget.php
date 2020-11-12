@@ -24,18 +24,18 @@ class TabWidget extends Widget
                 'name' => 'Баннеры',
                 'href' => Url::toRoute(['banner'])
             ],
-            [
-                'name' => 'Pop-up',
-                'href' => Url::toRoute(['popup'])
-            ],
+//            [
+//                'name' => 'Pop-up',
+//                'href' => Url::toRoute(['popup'])
+//            ],
             [
                 'name' => 'Площадки для баннеров',
                 'href' => Url::toRoute(['place'])
             ],
-            [
-                'name' => 'Площадки для pop-up',
-                'href' => Url::toRoute(['pop-place'])
-            ],
+//            [
+//                'name' => 'Площадки для pop-up',
+//                'href' => Url::toRoute(['pop-place'])
+//            ],
         ];
     }
 
