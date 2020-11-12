@@ -22,7 +22,7 @@
   "require": {
     "php": ">=7.0.0",
     "yiisoft/yii2": "~2.0.13",
-    "floor12/yii2-module-files": "*",
+    "shurper/yii2-module-files": "dev-fixes",
     "floor12/yii2-editmodal": "*",
     "kartik-v/yii2-widget-select2": "@dev",
     "kartik-v/yii2-widget-datepicker": "@dev",
@@ -46,7 +46,7 @@
     },
     {
       "type": "git",
-      "url": "https://github.com/shurper/yii2-editmodal"
+      "url": "https://github.com/floor12/yii2-editmodal"
     },
     {
       "type": "git",
