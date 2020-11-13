@@ -70,6 +70,7 @@ $form = ActiveForm::begin([
         'data' => $places,
         'language' => 'ru',
         'options' => ['multiple' => true],
+        'showToggleAll'=>false,
         'pluginOptions' => [
             'allowClear' => true
         ],
