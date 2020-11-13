@@ -95,6 +95,7 @@ echo GridView::widget([
             }
         ],
         [
+
             'attribute' => 'title',
             'content' => function (AdsBanner $model): string {
                 if ($model->status == AdsBanner::STATUS_DISABLED)
