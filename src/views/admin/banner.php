@@ -103,7 +103,7 @@ echo GridView::widget([
                 else
                     $html = $model;
                 $html .= Html::tag('div', implode(', ', $model->places), ['class' => 'small']);
-                $html .= $model->href ?? Html::tag('div', $model->href, ['class' => 'small']);
+                $html = $model->href ? $html.Html::tag('div', $model->href, ['class' => 'small']) : $html;
                 return $html;
             }
         ],
