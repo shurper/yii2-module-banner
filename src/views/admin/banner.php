@@ -103,15 +103,16 @@ echo GridView::widget([
                 else
                     $html = $model;
                 $html .= Html::tag('div', implode(', ', $model->places), ['class' => 'small']);
+                $html .= $model->href ?? Html::tag('div', $model->href, ['class' => 'small']);
                 return $html;
             }
         ],
-        [
-            'attribute' => 'type',
-            'content' => function (AdsBanner $model) {
-                return $model->type ? "HTML" : "Изображение";
-            }
-        ],
+//        [
+//            'attribute' => 'type',
+//            'content' => function (AdsBanner $model) {
+//                return $model->type ? "HTML" : "Изображение";
+//            }
+//        ],
         'views',
         'clicks',
         ['contentOptions' => ['style' => 'min-width:100px; text-align:right;'],
